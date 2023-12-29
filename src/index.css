@@ -1,3 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body{
+  font-family: 'Poppins', sans-serif;
+}
+
+@layer components {
+  .containerArena {
+    @apply max-w-[1500px] mx-auto px-4 md:px-10 lg:px-16 xl:px-[80px] 2xl:px-[100px]
+  }
+}
