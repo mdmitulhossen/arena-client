@@ -2,7 +2,7 @@ import logo from '../../assets/logo/logo.png';
 import userAvater from '../../assets/user.png';
 import { IoIosSearch } from "react-icons/io";
 
-import { FaRegUser } from "react-icons/fa6";
+// import { FaRegUser } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa";
 import { IoBagHandleOutline } from "react-icons/io5";
 const NavbarMiddle = () => {
@@ -52,15 +52,15 @@ const NavbarMiddle = () => {
                                 </div>
                             </button>
                             :
-                            <button className='bg-[#f18787] px-4 py-2 rounded text-sm font-semibold text-white hover:bg-[#b43e3e] duration-200'>Login</button>
+                            <button className='bg-arena-color px-4 py-2 rounded text-sm font-semibold text-white hover:bg-arena-color-hover duration-200'>Login</button>
                     }
                     <button className='relative'>
                         <FaRegHeart size={30} />
-                        <span className='bg-[#f18787] px-[4px] rounded-full text-xs font-bold text-white absolute -top-2 -right-2'>0</span>
+                        <span className='bg-arena-color px-[4px] rounded-full text-xs font-bold text-white absolute -top-2 -right-2'>0</span>
                     </button>
                     <button className='relative'>
                         <IoBagHandleOutline size={30} />
-                        <span className='bg-[#f18787] px-[4px] rounded-full text-xs font-bold text-white absolute -top-1 -right-1'>0</span>
+                        <span className='bg-arena-color px-[4px] rounded-full text-xs font-bold text-white absolute -top-1 -right-1'>0</span>
                     </button>
 
 

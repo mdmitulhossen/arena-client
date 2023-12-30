@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { IoIosSearch } from "react-icons/io";
 import logo from '../../assets/logo/logo.png';
+import mansAdds from '../../assets/Adds/mens-banner.jpg';
 
 const menu = [
     { name: "HOME", link: "/" },
@@ -12,18 +13,60 @@ const menu = [
 ]
 
 const NavbarBottom = () => {
+    // Ekhane MENS  categories er viterore ace tai extra rout banano thik hobe na
     return (
         <div className="containerArena py-3">
             <div className=" md:flex justify-center items-center gap-5 hidden ">
-                {
-                    menu.map((item, index) => {
-                        return <NavLink key={index} to={item.link}
-                            className={({ isActive, isPending }) =>
-                                isPending ? "pending" : isActive ? "text-[#F18787] font-medium border-b-2 border-[#F18787] md:text-sm lg:text-base" : "text-gray-700 font-medium hover:text-[#F18787] hover:border-b-2 hover:border-[#F18787] duration-200 md:text-sm lg:text-base"
-                            }
-                        >{item.name}</NavLink>
-                    })
-                }
+
+                <NavLink to='/'
+                    className={({ isActive, isPending }) =>
+                        isPending ? "pending" : isActive ? "text-arena-color font-medium border-b-[3px] border-arena-color md:text-sm lg:text-base" : "text-gray-600 font-medium hover:text-arena-color hover:border-b-[3px] hover:border-arena-color duration-100 md:text-sm lg:text-base"}
+                >HOME
+                </NavLink>
+                <NavLink to='/about'
+                    className={({ isActive, isPending }) =>
+                        isPending ? "pending" : isActive ? "text-arena-color font-medium border-b-[3px] border-arena-color md:text-sm lg:text-base" : "text-gray-600 font-medium hover:text-arena-color hover:border-b-[3px] hover:border-arena-color duration-100 md:text-sm lg:text-base"}
+                >ABOUT
+                </NavLink>
+                <div className="relative group">
+                    <NavLink to='/categories'
+                        className={({ isActive, isPending }) =>
+                            isPending ? "pending" : isActive ? "text-arena-color font-medium border-b-[3px] border-arena-color md:text-sm lg:text-base" : "text-gray-600 font-medium hover:text-arena-color hover:border-b-[3px] hover:border-arena-color duration-100 md:text-sm lg:text-base"}
+                    >CATEGORIES
+                    </NavLink>
+                    <div className="absolute hidden group-hover:block top-[25px]  right-1/2 translate-x-1/2  p-5 z-30 shadow-xl rounded-md bg-white border">
+                        <div className="w-full">
+                            <p className="border-b py-1 font-semibold">Men's</p>
+                            <div className="mt-3 flex flex-col gap-2 text-gray-700">
+                                <p className="cursor-pointer hover:text-arena-color duration-150">Formal</p>
+                                <p className="cursor-pointer hover:text-arena-color duration-150">Casual</p>
+                                <p className="cursor-pointer hover:text-arena-color  duration-150">Sports</p>
+                                <p className="cursor-pointer hover:text-arena-color  duration-150">Jacket</p>
+                                <p className="cursor-pointer hover:text-arena-color duration-150">Sunglasses</p>
+                                <div className="w-[250px] ">
+                                </div>
+                                <img src={mansAdds} className="rounded-md mt-3  w-full" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <NavLink to='/mens'
+                    className={({ isActive, isPending }) =>
+                        isPending ? "pending" : isActive ? "text-arena-color font-medium border-b-[3px] border-arena-color md:text-sm lg:text-base" : "text-gray-600 font-medium hover:text-arena-color hover:border-b-[3px] hover:border-arena-color duration-100 md:text-sm lg:text-base"}
+                >MEN'S
+                </NavLink>
+                <NavLink to='/blog'
+                    className={({ isActive, isPending }) =>
+                        isPending ? "pending" : isActive ? "text-arena-color font-medium border-b-[3px] border-arena-color md:text-sm lg:text-base" : "text-gray-600 font-medium hover:text-arena-color hover:border-b-[3px] hover:border-arena-color duration-100 md:text-sm lg:text-base"}
+                >BLOG
+                </NavLink>
+                <NavLink to='/hotOffers'
+                    className={({ isActive, isPending }) =>
+                        isPending ? "pending" : isActive ? "text-arena-color font-medium border-b-[3px] border-arena-color md:text-sm lg:text-base" : "text-gray-600 font-medium hover:text-arena-color hover:border-b-[3px] hover:border-arena-color duration-100 md:text-sm lg:text-base"}
+                >HOT OFFERS
+                </NavLink>
+
+
             </div>
 
 
@@ -52,15 +95,15 @@ const NavbarBottom = () => {
                                 <img className="w-[120px]" src={logo} alt="logo" />
                             </div>
                             <div className="flex flex-col gap-5 mt-10">
-                            {
-                                menu.map((item, index) => {
-                                    return <NavLink key={index} to={item.link}
-                                        className={({ isActive, isPending }) =>
-                                            isPending ? "pending" : isActive ? "text-[#F18787] font-medium border-b-2 border-[#F18787] md:text-sm lg:text-base" : "text-gray-700 font-medium hover:text-[#F18787] hover:border-b-2 hover:border-[#F18787] duration-200 md:text-sm lg:text-base"
-                                        }
-                                    >{item.name}</NavLink>
-                                })
-                            }
+                                {
+                                    menu.map((item, index) => {
+                                        return <NavLink key={index} to={item.link}
+                                            className={({ isActive, isPending }) =>
+                                                isPending ? "pending" : isActive ? "text-[#F18787] font-medium border-b-[3px] border-[#F18787] md:text-sm lg:text-base" : "text-gray-700 font-medium hover:text-[#F18787] hover:border-b-[3px] hover:border-[#F18787] duration-200 md:text-sm lg:text-base"
+                                            }
+                                        >{item.name}</NavLink>
+                                    })
+                                }
                             </div>
                         </div>
                     </div>
