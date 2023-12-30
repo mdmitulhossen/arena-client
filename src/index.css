@@ -19,5 +19,33 @@ body{
 }
 
 /* select color */
-/* #6A9485 */
-/* #F18787 */
+/* #6A9485  green*/
+/* // #366454 green hover */
+/* #F18787  red*/
+/* #d62a2a  red hover*/
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+.categoryScroll::-webkit-scrollbar {
+  width: 5px;
+  height:  5px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 50px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #6A9485 ;
+  border-radius: 50px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #366454;
+}
