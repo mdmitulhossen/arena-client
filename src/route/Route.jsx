@@ -12,6 +12,10 @@ const Route = createBrowserRouter([
                 path: "/",
                 element: <Home/>
             },
+            {
+                path: "/about",
+                element: <div>About</div>
+            },
         ],
     }
 ]);

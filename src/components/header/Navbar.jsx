@@ -1,3 +1,4 @@
+import NavbarBottom from "./NavbarBottom";
 import NavbarMiddle from "./NavbarMiddle";
 import NavbarTop from "./NavbarTop";
 
@@ -6,6 +7,7 @@ const Navbar = () => {
         <div className="">
             <NavbarTop/>
             <NavbarMiddle/>
+            <NavbarBottom/>
         </div>
     );
 };
