@@ -28,6 +28,7 @@ const NavbarBottom = () => {
                         isPending ? "pending" : isActive ? "text-arena-color font-medium border-b-[3px] border-arena-color md:text-sm lg:text-base" : "text-gray-600 font-medium hover:text-arena-color hover:border-b-[3px] hover:border-arena-color duration-100 md:text-sm lg:text-base"}
                 >ABOUT
                 </NavLink>
+                {/* category */}
                 <div className="relative group">
                     <NavLink to='/categories'
                         className={({ isActive, isPending }) =>
@@ -35,17 +36,32 @@ const NavbarBottom = () => {
                     >CATEGORIES
                     </NavLink>
                     <div className="absolute hidden group-hover:block top-[25px]  right-1/2 translate-x-1/2  p-5 z-30 shadow-xl rounded-md bg-white border">
-                        <div className="w-full">
-                            <p className="border-b py-1 font-semibold">Men's</p>
-                            <div className="mt-3 flex flex-col gap-2 text-gray-700">
-                                <p className="cursor-pointer hover:text-arena-color duration-150">Formal</p>
-                                <p className="cursor-pointer hover:text-arena-color duration-150">Casual</p>
-                                <p className="cursor-pointer hover:text-arena-color  duration-150">Sports</p>
-                                <p className="cursor-pointer hover:text-arena-color  duration-150">Jacket</p>
-                                <p className="cursor-pointer hover:text-arena-color duration-150">Sunglasses</p>
-                                <div className="w-[250px] ">
+                        <div className="flex gap-8">
+                            <div className="w-full">
+                                <p className="border-b py-1 font-semibold">Men's</p>
+                                <div className="mt-3 flex flex-col gap-2 text-gray-700">
+                                    <p className="cursor-pointer hover:text-arena-color duration-150">Formal</p>
+                                    <p className="cursor-pointer hover:text-arena-color duration-150">Casual</p>
+                                    <p className="cursor-pointer hover:text-arena-color  duration-150">Sports</p>
+                                    <p className="cursor-pointer hover:text-arena-color  duration-150">Jacket</p>
+                                    <p className="cursor-pointer hover:text-arena-color duration-150">Sunglasses</p>
+                                    <div className="w-[250px] ">
+                                    </div>
+                                    <img src={mansAdds} className="rounded-md mt-3  w-full" alt="" />
                                 </div>
-                                <img src={mansAdds} className="rounded-md mt-3  w-full" alt="" />
+                            </div>
+                            <div className="w-full">
+                                <p className="border-b py-1 font-semibold">Men's</p>
+                                <div className="mt-3 flex flex-col gap-2 text-gray-700">
+                                    <p className="cursor-pointer hover:text-arena-color duration-150">Formal</p>
+                                    <p className="cursor-pointer hover:text-arena-color duration-150">Casual</p>
+                                    <p className="cursor-pointer hover:text-arena-color  duration-150">Sports</p>
+                                    <p className="cursor-pointer hover:text-arena-color  duration-150">Jacket</p>
+                                    <p className="cursor-pointer hover:text-arena-color duration-150">Sunglasses</p>
+                                    <div className="w-[250px] ">
+                                    </div>
+                                  
+                                </div>
                             </div>
                         </div>
                     </div>
