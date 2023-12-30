@@ -4,7 +4,7 @@ import { FaLinkedin } from "react-icons/fa6";
 
 const NavbarTop = () => {
     return (
-        <div className="py-2 border-b bg-gray-100">
+        <div className="py-2 border-b bg-gray-100 hidden md:block">
             <div className="w-full flex justify-between text-gray-500 containerArena items-center flex-wrap gap-2">
                 <div className="flex gap-2 w-full justify-center md:w-auto md:justify-start">
                     <button className="bg-gray-200 p-[6px] text-gray-500 rounded-md flex justify-center items-center">

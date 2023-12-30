@@ -98,7 +98,7 @@ const NavbarBottom = () => {
                 {/* mobile menu */}
                 <div>
                     <input type="checkbox" id="drawer-toggle" className="relative sr-only peer" />
-                    <label htmlFor="drawer-toggle" className="inline-block p-2 transition-all duration-500 bg-gray-400 rounded-lg peer-checked:rotate-180 peer-checked:left-64 mt-2">
+                    <label htmlFor="drawer-toggle" className="inline-block p-2 transition-all duration-500 bg-arena-color rounded-lg peer-checked:rotate-180 peer-checked:left-64 mt-2">
                         <div className="w-5 h-1 mb-3 -rotate-45 bg-white rounded-lg"></div>
                         <div className="w-5 h-1 rotate-45 bg-white rounded-lg"></div>
 
