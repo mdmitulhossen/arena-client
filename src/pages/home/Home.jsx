@@ -1,5 +1,6 @@
 import CategorySection from "./CategorySection";
 import Hero from "./Hero";
+import HomeTestimonial from "./HomeTestimonial";
 import ProductSection from "./ProductSection";
 
 const Home = () => {
@@ -13,6 +14,9 @@ const Home = () => {
             </div>
             <div className="pb-4">
                 <ProductSection/>
+            </div>
+            <div className="pt-10">
+                <HomeTestimonial/>
             </div>
         </div>
     );

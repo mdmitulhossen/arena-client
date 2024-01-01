@@ -26,7 +26,7 @@ const newArrivalData = [
 const ProductSection = () => {
     return (
         <div className="grid gap-5 grid-cols-12 w-full relative">
-            <div className="lg:col-span-3 md:col-span-5 col-span-full md:sticky top-0  w-full md:h-screen pt-10">
+            <div className="lg:col-span-3 md:col-span-5 col-span-full md:sticky top-0  w-full md:h-screen md:overflow-y-auto homeSideBar pt-10">
                 {/* category */}
                 <div className="border shadow rounded-md p-5">
                     <p className='font-medium text-lg'>CATEGORY</p>
@@ -91,7 +91,7 @@ const ProductSection = () => {
                 </div>
             </div>
             {/* right side */}
-            <div className="lg:col-span-9 md:col-span-7 col-span-full border-2 w-full pt-10">
+            <div className="lg:col-span-9 md:col-span-7 col-span-full w-full pt-10">
                 {/* new,trending,top rated */}
                 <div className="grid xl:grid-cols-3 lg:grid-cols-2 gap-4 w-full">
                     {/* new arrivals */}
