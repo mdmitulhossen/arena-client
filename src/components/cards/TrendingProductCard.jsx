@@ -7,8 +7,8 @@ const TrendingProductCard = ({data}) => {
                 <img src={data.img} className="w-full h-full" alt="" />
             </div>
             <div>
-                <p className='font-semibold text-lg line-clamp-1'>{data.name}</p>
-                <p className="">Winter wear</p>
+                <p className='font-semibold text-lg line-clamp-1 text-gray-500'>{data.name}</p>
+                <p className="text-gray-500">Winter wear</p>
                 <div className='text-gray-500 space-x-2'>
                     <span className='font-semibold text-arena-color'>${data.newPrice?.toFixed(2)}</span>
                     <span className='text-sm'><del>${data.oldPrice?.toFixed(2)}</del></span>

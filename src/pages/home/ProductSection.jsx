@@ -8,6 +8,7 @@ import { FaPlus } from "react-icons/fa6";
 import BestSellerCard from '../../components/cards/BestSellerCard'
 import demo from '../../assets/bestSellers/sports-5.jpg'
 import TrendingProductCard from '../../components/cards/TrendingProductCard'
+import DealOfDayCard from '../../components/cards/DealOfDayCard'
 const bestSellerData = [
     {name: 'Fabric Shoes', oldPrice: 15.00, newPrice:7.00, rating: 3, img: demo},
     {name: "Men's T-Shirt", oldPrice: 8.00, newPrice:4.00, rating: 4, img: demo},
@@ -128,8 +129,9 @@ const ProductSection = () => {
                 </div>
 
                 {/* deal of the day */}
-                <div>
-                    
+                <div className='pt-10'>
+                    <p className='font-bold text-xl pb-2 border-b mb-6'>DEAL OF THE DAY</p>
+                    <DealOfDayCard/>
                 </div>
             </div>
         </div>
