@@ -9,18 +9,19 @@ import BestSellerCard from '../../components/cards/BestSellerCard'
 import demo from '../../assets/bestSellers/sports-5.jpg'
 import TrendingProductCard from '../../components/cards/TrendingProductCard'
 import DealOfDayCard from '../../components/cards/DealOfDayCard'
+import ProductCard from '../../components/cards/ProductCard'
 const bestSellerData = [
-    {name: 'Fabric Shoes', oldPrice: 15.00, newPrice:7.00, rating: 3, img: demo},
-    {name: "Men's T-Shirt", oldPrice: 8.00, newPrice:4.00, rating: 4, img: demo},
-    {name: 'Fabric Shoes', oldPrice: 9.00, newPrice:4.00, rating: 3, img: demo},
-    {name: 'Fabric Shoes', oldPrice: 10.00, newPrice:5.00, rating: 5, img: demo},
+    { name: 'Fabric Shoes', oldPrice: 15.00, newPrice: 7.00, rating: 3, img: demo },
+    { name: "Men's T-Shirt", oldPrice: 8.00, newPrice: 4.00, rating: 4, img: demo },
+    { name: 'Fabric Shoes', oldPrice: 9.00, newPrice: 4.00, rating: 3, img: demo },
+    { name: 'Fabric Shoes', oldPrice: 10.00, newPrice: 5.00, rating: 5, img: demo },
 ]
 
 const newArrivalData = [
-    {name: 'Winter wear Jacket leather',category:'sports', oldPrice: 15.00, newPrice:7.00, img: demo},
-    {name: 'Fabric Shoes',category:'sports', oldPrice: 15.00, newPrice:7.00, img: demo},
-    {name: 'Fabric Shoes',category:'sports', oldPrice: 15.00, newPrice:7.00, img: demo},
-    {name: 'Fabric Shoes',category:'sports', oldPrice: 15.00, newPrice:7.00, img: demo},
+    { name: 'Winter wear Jacket leather', category: 'sports', oldPrice: 15.00, newPrice: 7.00, img: demo },
+    { name: 'Fabric Shoes', category: 'sports', oldPrice: 15.00, newPrice: 7.00, img: demo },
+    { name: 'Fabric Shoes', category: 'sports', oldPrice: 15.00, newPrice: 7.00, img: demo },
+    { name: 'Fabric Shoes', category: 'sports', oldPrice: 15.00, newPrice: 7.00, img: demo },
 ]
 const ProductSection = () => {
     return (
@@ -36,7 +37,7 @@ const ProductSection = () => {
                                 <p className='text-gray-500'>Clothes</p>
                             </div>
                             <span className='text-gray-500'>
-                                <FaPlus size={18}/>
+                                <FaPlus size={18} />
                             </span>
                         </div>
                         <div className='flex justify-between items-center'>
@@ -45,7 +46,7 @@ const ProductSection = () => {
                                 <p className='text-gray-500'>Footwear</p>
                             </div>
                             <span className='text-gray-500'>
-                                <FaPlus size={18}/>
+                                <FaPlus size={18} />
                             </span>
                         </div>
                         <div className='flex justify-between items-center'>
@@ -54,7 +55,7 @@ const ProductSection = () => {
                                 <p className='text-gray-500'>Perfume</p>
                             </div>
                             <span className='text-gray-500'>
-                                <FaPlus size={18}/>
+                                <FaPlus size={18} />
                             </span>
                         </div>
                         <div className='flex justify-between items-center'>
@@ -63,7 +64,7 @@ const ProductSection = () => {
                                 <p className='text-gray-500'>Glasses</p>
                             </div>
                             <span className='text-gray-500'>
-                                <FaPlus size={18}/>
+                                <FaPlus size={18} />
                             </span>
                         </div>
                         <div className='flex justify-between items-center'>
@@ -72,7 +73,7 @@ const ProductSection = () => {
                                 <p className='text-gray-500'>Bags</p>
                             </div>
                             <span className='text-gray-500'>
-                                <FaPlus size={18}/>
+                                <FaPlus size={18} />
                             </span>
                         </div>
                     </div>
@@ -81,11 +82,11 @@ const ProductSection = () => {
                 <div className='py-5'>
                     <p className='font-medium text-lg'>BEST SELLERS</p>
                     <div className='pt-2 space-y-4'>
-                       {
+                        {
                             bestSellerData.map((item, index) => (
-                                 <BestSellerCard key={index} data={item}/>
+                                <BestSellerCard key={index} data={item} />
                             ))
-                       }
+                        }
                     </div>
                 </div>
             </div>
@@ -94,44 +95,61 @@ const ProductSection = () => {
                 {/* new,trending,top rated */}
                 <div className="grid xl:grid-cols-3 lg:grid-cols-2 gap-4 w-full">
                     {/* new arrivals */}
-                     <div>
-                         <p className='font-bold text-xl pb-2 border-b'>New Arrivals</p>
-                         <div className='pt-5 space-y-3'>
+                    <div>
+                        <p className='font-semibold text-xl pb-2 border-b'>New Arrivals</p>
+                        <div className='pt-5 space-y-3'>
                             {
                                 newArrivalData.map((item, index) => (
-                                    <TrendingProductCard key={index} data={item}/>
+                                    <TrendingProductCard key={index} data={item} />
                                 ))
                             }
-                         </div>
-                     </div>
-                     {/* trendings */}
-                     <div>
-                         <p className='font-bold text-xl pb-2 border-b'>Trending</p>
-                         <div className='pt-5 space-y-3'>
+                        </div>
+                    </div>
+                    {/* trendings */}
+                    <div>
+                        <p className='font-semibold text-xl pb-2 border-b'>Trending</p>
+                        <div className='pt-5 space-y-3'>
                             {
                                 newArrivalData.map((item, index) => (
-                                    <TrendingProductCard key={index} data={item}/>
+                                    <TrendingProductCard key={index} data={item} />
                                 ))
                             }
-                         </div>
-                     </div>
-                     {/* top rated */}
-                     <div>
-                         <p className='font-bold text-xl pb-2 border-b'>Top Rated</p>
-                         <div className='pt-5 space-y-3'>
+                        </div>
+                    </div>
+                    {/* top rated */}
+                    <div>
+                        <p className='font-semibold text-xl pb-2 border-b'>Top Rated</p>
+                        <div className='pt-5 space-y-3'>
                             {
                                 newArrivalData.map((item, index) => (
-                                    <TrendingProductCard key={index} data={item}/>
+                                    <TrendingProductCard key={index} data={item} />
                                 ))
                             }
-                         </div>
-                     </div>
+                        </div>
+                    </div>
                 </div>
 
                 {/* deal of the day */}
                 <div className='pt-10'>
-                    <p className='font-bold text-xl pb-2 border-b mb-6'>DEAL OF THE DAY</p>
-                    <DealOfDayCard/>
+                    <p className='font-semibold text-xl pb-2 border-b mb-6'>DEAL OF THE DAY</p>
+                    <DealOfDayCard />
+                </div>
+
+                {/* New Product */}
+                <div className='pt-12'>
+                    <p className='font-semibold text-xl pb-2 border-b mb-6'>NEW PRODUCTS</p>
+
+                    <div className='grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-1 gap-4'>
+                        <ProductCard />
+                        <ProductCard />
+                        <ProductCard />
+                        <ProductCard />
+                        <ProductCard />
+                        <ProductCard />
+                        <ProductCard />
+                        <ProductCard />
+                        <ProductCard />
+                    </div>
                 </div>
             </div>
         </div>
