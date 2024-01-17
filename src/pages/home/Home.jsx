@@ -15,7 +15,7 @@ const Home = () => {
             <div className="pb-4">
                 <ProductSection/>
             </div>
-            <div className="pt-10">
+            <div className="pt-10 pb-16">
                 <HomeTestimonial/>
             </div>
         </div>
