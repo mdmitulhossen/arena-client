@@ -5,7 +5,9 @@ import { IoIosSearch } from "react-icons/io";
 // import { FaRegUser } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa";
 import { IoBagHandleOutline } from "react-icons/io5";
+import { useNavigate } from 'react-router-dom';
 const NavbarMiddle = () => {
+    const navigate = useNavigate();
     const user = false
     return (
         <div className='border-b'>
@@ -52,7 +54,7 @@ const NavbarMiddle = () => {
                                 </div>
                             </button>
                             :
-                            <button className='bg-arena-color px-4 py-2 rounded text-sm font-semibold text-white hover:bg-arena-color-hover duration-200'>Login</button>
+                            <button onClick={()=>navigate('/login')} className='bg-arena-color px-4 py-2 rounded text-sm font-semibold text-white hover:bg-arena-color-hover duration-200'>Login</button>
                     }
                     <button className='relative'>
                         <FaRegHeart size={30} />
