@@ -20,19 +20,19 @@ const NavbarBottom = () => {
 
                 <NavLink to='/'
                     className={({ isActive, isPending }) =>
-                        isPending ? "pending" : isActive ? "text-arena-color font-medium border-b-[3px] border-arena-color md:text-sm lg:text-base" : "text-gray-600 font-medium hover:text-arena-color hover:border-b-[3px] hover:border-arena-color duration-100 md:text-sm lg:text-base"}
+                        isPending ? "pending" : isActive ? "text-arena-color font-medium border-b-[3px] border-arena-color md:text-sm lg:text-base" : "text-gray-600 font-medium hover:text-arena-color hover:border-b-[3px] border-b-[3px] border-transparent hover:border-arena-color duration-100 md:text-sm lg:text-base"}
                 >HOME
                 </NavLink>
                 <NavLink to='/about'
                     className={({ isActive, isPending }) =>
-                        isPending ? "pending" : isActive ? "text-arena-color font-medium border-b-[3px] border-arena-color md:text-sm lg:text-base" : "text-gray-600 font-medium hover:text-arena-color hover:border-b-[3px] hover:border-arena-color duration-100 md:text-sm lg:text-base"}
+                        isPending ? "pending" : isActive ? "text-arena-color font-medium border-b-[3px] border-arena-color md:text-sm lg:text-base" : "text-gray-600 border-b-[3px] border-transparent font-medium hover:text-arena-color hover:border-b-[3px] hover:border-arena-color duration-100 md:text-sm lg:text-base"}
                 >ABOUT
                 </NavLink>
                 {/* category */}
                 <div className="relative group">
                     <NavLink to='/categories'
                         className={({ isActive, isPending }) =>
-                            isPending ? "pending" : isActive ? "text-arena-color font-medium border-b-[3px] border-arena-color md:text-sm lg:text-base" : "text-gray-600 font-medium hover:text-arena-color hover:border-b-[3px] hover:border-arena-color duration-100 md:text-sm lg:text-base"}
+                            isPending ? "pending" : isActive ? "text-arena-color font-medium border-b-[3px] border-arena-color md:text-sm lg:text-base" : "text-gray-600 font-medium hover:text-arena-color hover:border-b-[3px] border-b-[3px] border-transparent hover:border-arena-color duration-100 md:text-sm lg:text-base"}
                     >CATEGORIES
                     </NavLink>
                     <div className="absolute hidden group-hover:block top-[25px]  right-1/2 translate-x-1/2  p-5 z-30 shadow-xl rounded-md bg-white border">
@@ -68,17 +68,17 @@ const NavbarBottom = () => {
                 </div>
                 <NavLink to='/mens'
                     className={({ isActive, isPending }) =>
-                        isPending ? "pending" : isActive ? "text-arena-color font-medium border-b-[3px] border-arena-color md:text-sm lg:text-base" : "text-gray-600 font-medium hover:text-arena-color hover:border-b-[3px] hover:border-arena-color duration-100 md:text-sm lg:text-base"}
+                        isPending ? "pending" : isActive ? "text-arena-color font-medium border-b-[3px] border-arena-color md:text-sm lg:text-base" : "text-gray-600 border-b-[3px] border-transparent font-medium hover:text-arena-color hover:border-b-[3px] hover:border-arena-color duration-100 md:text-sm lg:text-base"}
                 >MEN'S
                 </NavLink>
                 <NavLink to='/blog'
                     className={({ isActive, isPending }) =>
-                        isPending ? "pending" : isActive ? "text-arena-color font-medium border-b-[3px] border-arena-color md:text-sm lg:text-base" : "text-gray-600 font-medium hover:text-arena-color hover:border-b-[3px] hover:border-arena-color duration-100 md:text-sm lg:text-base"}
+                        isPending ? "pending" : isActive ? "text-arena-color font-medium border-b-[3px] border-arena-color md:text-sm lg:text-base" : "text-gray-600 border-b-[3px] border-transparent font-medium hover:text-arena-color hover:border-b-[3px] hover:border-arena-color duration-100 md:text-sm lg:text-base"}
                 >BLOG
                 </NavLink>
                 <NavLink to='/hotOffers'
                     className={({ isActive, isPending }) =>
-                        isPending ? "pending" : isActive ? "text-arena-color font-medium border-b-[3px] border-arena-color md:text-sm lg:text-base" : "text-gray-600 font-medium hover:text-arena-color hover:border-b-[3px] hover:border-arena-color duration-100 md:text-sm lg:text-base"}
+                        isPending ? "pending" : isActive ? "text-arena-color font-medium border-b-[3px] border-arena-color md:text-sm lg:text-base" : "text-gray-600 font-medium border-b-[3px] border-transparent hover:text-arena-color hover:border-b-[3px] hover:border-arena-color duration-100 md:text-sm lg:text-base"}
                 >HOT OFFERS
                 </NavLink>
 
