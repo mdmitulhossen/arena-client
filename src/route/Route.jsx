@@ -5,6 +5,7 @@ import RegisterPage from "../pages/auth/RegisterPage";
 import LoginPage from "../pages/auth/LoginPage";
 import CreateOrder from "../pages/create&Order/CreateOrder";
 import AboutPage from "../pages/about/AboutPage";
+import ProductDetailsPage from "../pages/product/ProductDetailsPage";
 
 
 const Route = createBrowserRouter([
@@ -19,6 +20,10 @@ const Route = createBrowserRouter([
             {
                 path: "/about",
                 element: <AboutPage/>
+            },
+            {
+                path: "/product/1",
+                element: <ProductDetailsPage/>
             },
             {
                 path: "/create&Order",
