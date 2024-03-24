@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import SizeWithQuantity from "./SizeWithQuantity";
 import { useState } from "react";
 import { fabricData } from "../../utilitis/demoData";
+import sizeChar from '../../assets/T-shirt-size-charts.webp'
 
 const CreateDesignForm = () => {
     const [size, setSize] = useState([1])
@@ -76,7 +77,8 @@ const CreateDesignForm = () => {
                             ))
                         }
 
-                        <p onClick={handleSize} className="px-5 py-1 border inline-block cursor-pointer arenaBtn">ADD MORE SIZE</p>
+                        <p onClick={handleSize} className="px-5 py-1 border inline-block cursor-pointer arenaBtn">ADD MORE SIZE</p> <br />
+                        <a href={sizeChar} download={sizeChar} className="px-5 py-1 border inline-block cursor-pointer arenaBtn">DAWNLOAD SIZE CHART</a>
                     </div>
 
                 </div>
