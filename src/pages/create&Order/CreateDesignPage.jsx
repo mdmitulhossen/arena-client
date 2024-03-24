@@ -75,24 +75,24 @@ const CreateDesignPage = () => {
     const [tShirtDesign, setTShirtDesign] = useState(tShirtDesignData[0])
     return (
         <div>
-            <div className="grid grid-cols-2 gap-16 pt-10">
-                <div className="">
-                    <div className="flex gap-2">
-                        <div className="w-full relative">
-                            <img src={tShirtColor?.color} alt="" className="w-full h-full object-cover" />
+            <div className="grid lg:grid-cols-2 gap-16 pt-10">
+                <div className="overflow-hidden">
+                    <div className="flex gap-2 flex-wrap md:flex-nowrap overflow-hidden">
+                        <div className="w-full relative overflow-hidden">
+                            <img src={tShirtColor?.color} alt="" className="w-full h-full" />
                             <img src={tShirtDesign?.design} alt="" className="max-w-[300px] w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
                         </div>
-                        <div className="">
+                        <div className="flex md:flex-col">
                             {
                                 tShirtDesignData?.map((item, index) => (
-                                    <img onClick={() => setTShirtDesign(item)} key={index} src={item.design} alt="" className="max-w-[100px] border-b-2 border-dashed cursor-pointer" />
+                                    <img onClick={() => setTShirtDesign(item)} key={index} src={item.design} alt="" className="max-w-[100px] border-b-2 border-dashed cursor-pointer w-full" />
                                 ))
                             }
                         </div>
                     </div>
 
                     {/* color */}
-                    <div className="flex gap-3 pt-4">
+                    <div className="flex gap-3 pt-4 w-full overflow-auto categoryScroll">
                         {
                             tShirtColorData?.map((item, index) => (
                                 <img onClick={() => setTShirtColor(item)} key={index} src={item.color} alt="" className="max-w-[50px] border-b-2 border-dashed cursor-pointer" />

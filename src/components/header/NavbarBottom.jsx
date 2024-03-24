@@ -7,7 +7,7 @@ const menu = [
     { name: "HOME", link: "/" },
     { name: "ABOUT", link: "/about" },
     { name: "CATEGORIES", link: "/categories" },
-    { name: "MEN'S", link: "/mens" },
+    { name: "Create&Order", link: "/create&Order" },
     { name: "BLOG", link: "/blog" },
     { name: "HOT OFFERS", link: "/gotOffers" },
 ]
@@ -66,10 +66,10 @@ const NavbarBottom = () => {
                         </div>
                     </div>
                 </div>
-                <NavLink to='/mens'
+                <NavLink to='/create&Order'
                     className={({ isActive, isPending }) =>
                         isPending ? "pending" : isActive ? "text-arena-color font-medium border-b-[3px] border-arena-color md:text-sm lg:text-base" : "text-gray-600 border-b-[3px] border-transparent font-medium hover:text-arena-color hover:border-b-[3px] hover:border-arena-color duration-100 md:text-sm lg:text-base"}
-                >MEN'S
+                >Create&Order
                 </NavLink>
                 <NavLink to='/blog'
                     className={({ isActive, isPending }) =>

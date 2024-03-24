@@ -4,6 +4,7 @@ import Home from "../pages/home/Home";
 import RegisterPage from "../pages/auth/RegisterPage";
 import LoginPage from "../pages/auth/LoginPage";
 import CreateOrder from "../pages/create&Order/CreateOrder";
+import AboutPage from "../pages/about/AboutPage";
 
 
 const Route = createBrowserRouter([
@@ -17,7 +18,7 @@ const Route = createBrowserRouter([
             },
             {
                 path: "/about",
-                element: <div>About</div>
+                element: <AboutPage/>
             },
             {
                 path: "/create&Order",

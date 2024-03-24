@@ -35,11 +35,14 @@ const CreateDesignForm = () => {
 
         const newdata = {
             quantity: data.quantity,
-            size: sizeAndItems
+            size: sizeAndItems,
+            fabric: data.fabric
         }
 
         console.log(newdata)
     }
+
+
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className="space-y-8">
@@ -56,7 +59,8 @@ const CreateDesignForm = () => {
                     <p className="text-2xl font-semibold">
                         Quantity
                     </p>
-                    <input className="px-3 md:w-1/2 w-full py-1 bg-transparent border-b-2 border-[#6A9485] rounded-xl" type="number" {...register('quantity')} placeholder="Quantity" />
+
+                    <input min={1} className="px-3 md:w-1/2 w-full py-1 bg-transparent border-b-2 border-[#216d53] rounded-xl" type="number" placeholder="Quantity" {...register('quantity')} />
                 </div>
 
                 {/* size */}
@@ -82,7 +86,7 @@ const CreateDesignForm = () => {
                     <p className="text-2xl font-semibold">
                         Fabric
                     </p>
-                    <select className="flex-1 px-2 py-1 md:w-1/2 w-full bg-transparent border-b-2 border-[#6A9485] rounded-xl" {...register('fabric')}>
+                    <select className="flex-1 px-2 py-1  w-full bg-transparent border-b-2 border-[#6A9485] rounded-xl" {...register('fabric')}>
                         {
                             fabricData?.map((item, index) => (
                                 <option key={index} value={item.fabric}>{item.fabric}</option>
@@ -93,7 +97,7 @@ const CreateDesignForm = () => {
                 {/* Price */}
                 <div>
                     <p className="text-2xl font-semibold">
-                        Price
+                        Price <span className="text-sm font-bold text-[#366454]">(Per Piece)</span>
                     </p>
                     <p className="text-2xl text-[#6A9485] font-medium">
                         200 TK
@@ -103,7 +107,7 @@ const CreateDesignForm = () => {
             {/* btn */}
             <div className="flex gap-6 mt-8">
                 <input className=" px-5 py-3 w-full cursor-pointer arenaBtn" type="submit" value='Order Now' />
-                <p className="px-5 py-3 border inline-block cursor-pointer arenaBtn w-full text-center flex items-center justify-center">ADD MORE SIZE</p>
+                <p className="px-5 py-3 border inline-block cursor-pointer arenaBtn w-full text-center flex items-center justify-center">ADD TO CART</p>
             </div>
         </form>
     );
