@@ -4,7 +4,11 @@ import { IoEyeOutline } from "react-icons/io5";
 import { IoBagAddOutline } from "react-icons/io5";
 import demo from '../../assets/bestSellers/sports-5.jpg'
 import demo2 from '../../assets/bestSellers/shoe2.png'
+import { useNavigate } from 'react-router-dom';
+
+
 const ProductCard = () => {
+    const navigate = useNavigate();
     const ratingStyle = {
         itemShapes: Star,
         activeFillColor: '#ffb700',
@@ -27,13 +31,13 @@ const ProductCard = () => {
             </div>
             <div className='absolute top-0 right-0 opacity-0  group-hover:top-4 group-hover:right-2 group-hover:opacity-100 duration-200 space-y-3'>
                 <div className='w-8 shadow border-arena-color h-8 p-1 border rounded-md bg-white flex justify-center items-center hover:bg-arena-color cursor-pointer hover:text-white duration-150 text-gray-600'>
-                    <CiHeart size={27}/>
+                    <CiHeart size={27} />
                 </div>
-                <div className='w-8 border-arena-color shadow h-8 p-1 border bg-white rounded-md flex justify-center items-center hover:bg-arena-color cursor-pointer hover:text-white duration-150 text-gray-600'>
-                    <IoEyeOutline size={27}/>
+                <div onClick={()=>navigate('/product/1')} className='w-8 border-arena-color shadow h-8 p-1 border bg-white rounded-md flex justify-center items-center hover:bg-arena-color cursor-pointer hover:text-white duration-150 text-gray-600'>
+                    <IoEyeOutline size={27} />
                 </div>
                 <div className='w-8 border-arena-color shadow p-1 h-8 border bg-white rounded-md flex justify-center items-center hover:bg-arena-color cursor-pointer hover:text-white duration-150 text-gray-600'>
-                    <IoBagAddOutline size={27}/>
+                    <IoBagAddOutline size={27} />
                 </div>
             </div>
         </div>

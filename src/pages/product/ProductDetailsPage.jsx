@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Breadcrumb from "../../components/breadcrumb/Breadcrumb";
 import { CiStar } from "react-icons/ci";
 import demoimg from '../../assets/bestSellers/shoe2.png'
@@ -18,6 +18,15 @@ const ProductDetailsPage = () => {
     const getSize = (value) => {
         setSize(value);
     };
+    // scroll to top
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth"
+          });
+    }, []);
+    
     return (
         <div className="py-10 containerArena">
             <Breadcrumb />
@@ -104,7 +113,7 @@ const ProductDetailsPage = () => {
                             <p className=" mt-4 font-normal text-sm leading-3 text-gray-500 hover:text-gray-600 duration-100 underline cursor-pointer">Find the perfect size?</p>
 
                             <div className="flex  w-full gap-5 pb-10">
-                                <button className="arenaBtn w-full py-3">Add to Bag</button>
+                                <button className="arenaBtn w-full py-3">Add to Cart</button>
                                 <button className="arenaBtn w-full py-3">Add to Wishlist</button>
                             </div>
                         </div>

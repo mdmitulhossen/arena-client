@@ -106,9 +106,9 @@ const CreateDesignPage = () => {
 
     }
     return (
-        <div>
+        <div className="pt-6">
             <div className="space-y-2">
-                <h1 className="text-2xl font-bold pt-10">Choose What You Want?</h1>
+                <h1 className="text-2xl font-bold">Choose What You Want?</h1>
                 <select onChange={(e) => handleChoose(e)} name="choose" id="" className="max-w-[400px] w-full px-2 py-1 bg-transparent border">
                     <option value="create">Create Design</option>
                     <option value="existing">Existing Design</option>

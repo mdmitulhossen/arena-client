@@ -6,6 +6,7 @@ import LoginPage from "../pages/auth/LoginPage";
 import CreateOrder from "../pages/create&Order/CreateOrder";
 import AboutPage from "../pages/about/AboutPage";
 import ProductDetailsPage from "../pages/product/ProductDetailsPage";
+import CategoryPage from "../pages/category/CategoryPage";
 
 
 const Route = createBrowserRouter([
@@ -24,6 +25,10 @@ const Route = createBrowserRouter([
             {
                 path: "/product/1",
                 element: <ProductDetailsPage/>
+            },
+            {
+                path: "/category",
+                element: <CategoryPage/>
             },
             {
                 path: "/create&Order",
