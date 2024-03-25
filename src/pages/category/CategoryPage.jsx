@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Breadcrumb from "../../components/breadcrumb/Breadcrumb";
 import ProductCard from "../../components/cards/ProductCard";
 import FilterSide from "./FilterSide";
@@ -8,6 +8,15 @@ import Sort from "./Sort";
 
 const CategoryPage = () => {
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
+
+    // scroll to top
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth"
+        });
+    }, []);
     return (
         <div className="containerArena py-10">
             <Breadcrumb />

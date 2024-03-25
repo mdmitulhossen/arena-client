@@ -7,40 +7,52 @@ import CreateOrder from "../pages/create&Order/CreateOrder";
 import AboutPage from "../pages/about/AboutPage";
 import ProductDetailsPage from "../pages/product/ProductDetailsPage";
 import CategoryPage from "../pages/category/CategoryPage";
+import NotFoundPage from "../pages/NotFoundPage";
+import Cartpage from "../pages/cart/Cartpage";
+import CheckoutPage from "../pages/cart/CheckoutPage";
 
 
 const Route = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout />,
+        errorElement: <NotFoundPage />,
         children: [
             {
                 path: "/",
-                element: <Home/>,
+                element: <Home />,
             },
             {
                 path: "/about",
-                element: <AboutPage/>
+                element: <AboutPage />
             },
             {
                 path: "/product/1",
-                element: <ProductDetailsPage/>
+                element: <ProductDetailsPage />
             },
             {
                 path: "/category",
-                element: <CategoryPage/>
+                element: <CategoryPage />
             },
             {
                 path: "/create&Order",
-                element: <CreateOrder/>
+                element: <CreateOrder />
+            },
+            {
+                path: "/cart",
+                element: <Cartpage/>
+            },
+            {
+                path: "/checkout",
+                element: <CheckoutPage/>
             },
             {
                 path: "/register",
-                element: <RegisterPage/>
+                element: <RegisterPage />
             },
             {
                 path: "/login",
-                element: <LoginPage/>
+                element: <LoginPage />
             },
         ],
     }

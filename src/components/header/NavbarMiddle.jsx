@@ -60,7 +60,7 @@ const NavbarMiddle = () => {
                         <FaRegHeart size={30} />
                         <span className='bg-arena-color px-[4px] rounded-full text-xs font-bold text-white absolute -top-2 -right-2'>0</span>
                     </button>
-                    <button className='relative'>
+                    <button onClick={()=>navigate('/cart')} className='relative'>
                         <IoBagHandleOutline size={30} />
                         <span className='bg-arena-color px-[4px] rounded-full text-xs font-bold text-white absolute -top-1 -right-1'>0</span>
                     </button>

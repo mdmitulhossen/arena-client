@@ -6,7 +6,7 @@ import mansAdds from '../../assets/Adds/mens-banner.jpg';
 const menu = [
     { name: "HOME", link: "/" },
     { name: "ABOUT", link: "/about" },
-    { name: "CATEGORIES", link: "/categories" },
+    { name: "CATEGORIES", link: "/category" },
     { name: "Create&Order", link: "/create&Order" },
     { name: "BLOG", link: "/blog" },
     { name: "HOT OFFERS", link: "/gotOffers" },
@@ -30,7 +30,7 @@ const NavbarBottom = () => {
                 </NavLink>
                 {/* category */}
                 <div className="relative group">
-                    <NavLink to='/categories'
+                    <NavLink to='/category'
                         className={({ isActive, isPending }) =>
                             isPending ? "pending" : isActive ? "text-arena-color font-medium border-b-[3px] border-arena-color md:text-sm lg:text-base" : "text-gray-600 font-medium hover:text-arena-color hover:border-b-[3px] border-b-[3px] border-transparent hover:border-arena-color duration-100 md:text-sm lg:text-base"}
                     >CATEGORIES
@@ -60,7 +60,7 @@ const NavbarBottom = () => {
                                     <p className="cursor-pointer hover:text-arena-color duration-150">Sunglasses</p>
                                     <div className="w-[250px] ">
                                     </div>
-                                  
+
                                 </div>
                             </div>
                         </div>
