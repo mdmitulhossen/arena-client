@@ -10,6 +10,7 @@ import CategoryPage from "../pages/category/CategoryPage";
 import NotFoundPage from "../pages/NotFoundPage";
 import Cartpage from "../pages/cart/Cartpage";
 import CheckoutPage from "../pages/cart/CheckoutPage";
+import Favourte from "../pages/favourite/Favourte";
 
 
 const Route = createBrowserRouter([
@@ -45,6 +46,10 @@ const Route = createBrowserRouter([
             {
                 path: "/checkout",
                 element: <CheckoutPage/>
+            },
+            {
+                path: "/favourite",
+                element: <Favourte/>
             },
             {
                 path: "/register",

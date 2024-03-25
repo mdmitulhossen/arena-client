@@ -56,7 +56,7 @@ const NavbarMiddle = () => {
                             :
                             <button onClick={()=>navigate('/login')} className='bg-arena-color px-4 py-2 rounded text-sm font-semibold text-white hover:bg-arena-color-hover duration-200'>Login</button>
                     }
-                    <button className='relative'>
+                    <button onClick={()=>navigate('/favourite')} className='relative'>
                         <FaRegHeart size={30} />
                         <span className='bg-arena-color px-[4px] rounded-full text-xs font-bold text-white absolute -top-2 -right-2'>0</span>
                     </button>
