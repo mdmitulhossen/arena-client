@@ -11,6 +11,11 @@ import NotFoundPage from "../pages/NotFoundPage";
 import Cartpage from "../pages/cart/Cartpage";
 import CheckoutPage from "../pages/cart/CheckoutPage";
 import Favourte from "../pages/favourite/Favourte";
+import SellerPage from "../pages/auth/SellerPage";
+import SellerAdmin from "../Layout/SellerAdmin";
+import Dashboard from "../pages/seller/Dashboard";
+import AllProducts from "../pages/seller/AllProducts";
+import AddProducts from "../pages/seller/AddProducts";
 
 
 const Route = createBrowserRouter([
@@ -52,6 +57,10 @@ const Route = createBrowserRouter([
                 element: <Favourte/>
             },
             {
+                path: "/sellerRegister",
+                element: <SellerPage/>
+            },
+            {
                 path: "/register",
                 element: <RegisterPage />
             },
@@ -60,7 +69,28 @@ const Route = createBrowserRouter([
                 element: <LoginPage />
             },
         ],
-    }
+    },
+    {
+        path: "/sellerAdmin",
+        element: <SellerAdmin/>,
+        errorElement: <NotFoundPage />,
+        children: [
+            {
+                // path:'',
+                index:true,
+                element: <Dashboard/>,
+            },
+            {
+                path:'products',
+                element:<AllProducts/>
+            },
+            {
+                path:'addProduct',
+                element:<AddProducts/>
+            }
+           
+        ],
+    },
 ]);
 
 

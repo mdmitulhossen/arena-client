@@ -10,11 +10,11 @@ const RegisterPage = () => {
                 <div className='md:flex justify-between pb-5 text-lg text-[#366454]'>
                     <p>
                         Become a
-                        <span className=' text-blue-400 cursor-pointer'> Seller</span>
+                        <span onClick={() => navigate('/sellerRegister')} className=' text-blue-400 cursor-pointer'> Seller</span>
                     </p>
                     <p className='text-base'>
-                        Already member? 
-                        <span onClick={()=>navigate('/login')} className=' text-blue-400 cursor-pointer'> Login </span>
+                        Already member?
+                        <span onClick={() => navigate('/login')} className=' text-blue-400 cursor-pointer'> Login </span>
                         here.
                     </p>
                 </div>
