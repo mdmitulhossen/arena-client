@@ -3,12 +3,13 @@ import Navbar from "../components/header/Navbar";
 import Footer from "../components/footer/Footer";
 
 
+
 const MainLayout = () => {
     return (
         <div>
-            <Navbar/>
-            <Outlet/>
-            <Footer/>
+            <Navbar />
+            <Outlet />
+            <Footer />  
         </div>
     );
 };

@@ -1,9 +1,60 @@
 import React from 'react';
 import { FaFacebookF } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa6";
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
+import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { PuffLoader } from 'react-spinners';
 const RegisterPage = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+    const { signUpWithEmailPassword, updateUserProfile, loading, setLoading,
+    } = useAuth() || {};
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm()
+
+    // Handle register
+    const handleRegister = (data) => {
+        const { name, email, password, phone } = data || {}
+        console.log(data)
+
+        // if (password.length < 6) {
+        //     toast.error("Password must be at least 6 characters")
+        //     return
+        // }
+        //create user
+        signUpWithEmailPassword(email, password)
+            .then((result) => {
+                // updateUserProfile({ displayName: name, photoURL: photoURL })
+                //     .then((r) => {
+                //         axios.post('https://food-surplus-saver.vercel.app/jwt', { email: r?.user.email }, { withCredentials: true })
+                //             .then(res => {
+                //                 setLoading(false);
+                //                 navigate(location?.state ? location.state : "/");
+                //                 toast.success("Registration successful");
+                //             })
+
+                //     })
+                //     .catch((err) => {
+                //         setLoading(false);
+                //         toast.error(err.message);
+                //     });
+                setLoading(false);
+                navigate(location?.state ? location.state : "/");
+                toast.success("Registration successful");
+            })
+            .catch((err) => {
+                toast.error(err.message);
+                setLoading(false);
+            });
+
+    }
+
     return (
         <div className='py-12 flex justify-center items-center containerArena'>
             <div className='lg:min-w-[850px]'>
@@ -20,28 +71,42 @@ const RegisterPage = () => {
                 </div>
                 <div className='px-10 pb-10 pt-5 bg-[#F3F4F6] shadow-md w-full'>
                     <p className='mb-8 text-2xl font-semibold text-center text-[#366454]'>Create You Arena Account</p>
-                    <form action="" className='md:flex gap-10'>
+                    <form onSubmit={handleSubmit(handleRegister)} className='md:flex gap-10'>
                         <div className='space-y-5 flex-1'>
                             <div className=''>
                                 <label htmlFor="phone" className='block text-sm mb-2'>Phone Number</label>
-                                <input className='p-2 w-full focus:outline-[#366454]' type="text" name="phone" id="phone" placeholder='Enter Number' />
+                                <input
+                                    {...register("phone")}
+                                    className='p-2 w-full focus:outline-[#366454]' type="text" name="phone" id="phone" placeholder='Enter Number' />
                             </div>
                             <div className=''>
                                 <label htmlFor="email" className='block text-sm mb-2'>Email</label>
-                                <input className='p-2 w-full focus:outline-[#366454]' type="email" name="email" id="email" placeholder='Enter email' />
+                                <input
+                                    {...register("email", { required: true })}
+                                    className='p-2 w-full focus:outline-[#366454]' type="email" name="email" id="email" placeholder='Enter email' />
+                                {
+                                    errors.email && <p className='text-red-500 text-sm font-semibold'>Email is required</p>
+                                }
                             </div>
                             <div className=''>
                                 <label htmlFor="password" className='block text-sm mb-2'>Password</label>
-                                <input className='p-2 w-full focus:outline-[#366454]' type="password" name="password" id="password" placeholder='Enter password' />
+                                <input
+                                    {...register("password", { required: true })}
+                                    className='p-2 w-full focus:outline-[#366454]' type="password" name="password" id="password" placeholder='Enter password' />
+                                {
+                                    errors.password && <p className='text-red-500 text-sm font-semibold'>Password is required</p>
+                                }
                             </div>
                         </div>
                         <div className='flex-1'>
                             <div className=''>
                                 <label htmlFor="name" className='block text-sm mb-2'>Full Name</label>
-                                <input className='p-2 w-full focus:outline-[#366454]' type="text" name="name" id="name" placeholder='Enter Name' />
+                                <input
+                                    {...register("name")}
+                                    className='p-2 w-full focus:outline-[#366454]' type="text" name="name" id="name" placeholder='Enter Name' />
                             </div>
                             <div className='mt-5'>
-                                <button className='arenaBtn w-full rounded-none py-3'>SIGN UP</button>
+                                <button type='submit' className='arenaBtn w-full rounded-none py-3'>{loading ? <PuffLoader size={30} color="#36d7b7" /> : 'SIGN UP'}</button>
                             </div>
                             <p className='text-sm mt-1 text-[#6B7280]'>
                                 By clicking “SIGN UP”, I agree to Arena <span className='text-blue-400 cursor-pointer '>Terms and Condition</span>

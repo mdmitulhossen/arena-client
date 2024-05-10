@@ -1,7 +1,9 @@
 import { NavLink, Outlet } from "react-router-dom";
-
+import { FaBarsProgress } from "react-icons/fa6";
+import { IoMdAddCircle } from "react-icons/io";
 
 const SellerAdmin = () => {
+    const seller = true
     return (
         <div className="bg-green-50">
             <div className="relative containerArena grid grid-cols-12 p-5">
@@ -18,7 +20,7 @@ const SellerAdmin = () => {
                         <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800 rounded-md">
                             <ul className="space-y-2 font-medium">
                                 <li>
-                                    <NavLink to="/sellerAdmin"
+                                    <NavLink to="/sellerDashboard"
                                         className={({ isActive, isPending }) =>
                                             isPending ? "pending" : isActive ? "flex items-center p-2 text-gray-900 rounded-lg dark:text-white bg-gray-100 dark:bg-gray-700 group" : "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"}
                                     >
@@ -30,7 +32,16 @@ const SellerAdmin = () => {
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/sellerAdmin/products"
+                                    <NavLink to="/sellerDashboard/profile"
+                                        className={({ isActive, isPending }) =>
+                                            isPending ? "pending" : isActive ? "flex items-center p-2 text-gray-900 rounded-lg dark:text-white bg-gray-100 dark:bg-gray-700 group" : "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"}
+                                    >
+                                       <FaBarsProgress />
+                                        <span className="ms-3">Profile</span>
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/sellerDashboard/products"
                                         className={({ isActive, isPending }) =>
                                             isPending ? "pending" : isActive ? "flex items-center p-2 text-gray-900 rounded-lg dark:text-white bg-gray-100 dark:bg-gray-700 group" : "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"}
                                     >
@@ -42,7 +53,7 @@ const SellerAdmin = () => {
                                 </li>
 
                                 <li>
-                                    <NavLink to="/sellerAdmin/addProduct"
+                                    <NavLink to="/sellerDashboard/addProduct"
                                         className={({ isActive, isPending }) =>
                                             isPending ? "pending" : isActive ? "flex items-center p-2 text-gray-900 rounded-lg dark:text-white bg-gray-100 dark:bg-gray-700 group" : "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"}
                                     >
@@ -50,6 +61,15 @@ const SellerAdmin = () => {
                                             <path d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
                                         </svg>
                                         <span className="flex-1 ms-3 whitespace-nowrap">Add Product</span>
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/sellerDashboard/order"
+                                        className={({ isActive, isPending }) =>
+                                            isPending ? "pending" : isActive ? "flex items-center p-2 text-gray-900 rounded-lg dark:text-white bg-gray-100 dark:bg-gray-700 group" : "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"}
+                                    >
+                                        <IoMdAddCircle size={25}/>
+                                        <span className="flex-1 ms-3 whitespace-nowrap">Order</span>
                                     </NavLink>
                                 </li>
 

@@ -93,7 +93,7 @@ const ProductSection = () => {
             {/* right side */}
             <div className="lg:col-span-9 md:col-span-7 col-span-full w-full pt-10">
                 {/* new,trending,top rated */}
-                <div className="grid xl:grid-cols-3 lg:grid-cols-2 gap-4 w-full">
+                <div className="grid xl:grid-cols-2 lg:grid-cols-2 gap-4 w-full">
                     {/* new arrivals */}
                     <div>
                         <p className='font-semibold text-xl pb-2 border-b'>New Arrivals</p>
@@ -117,7 +117,7 @@ const ProductSection = () => {
                         </div>
                     </div>
                     {/* top rated */}
-                    <div>
+                    {/* <div>
                         <p className='font-semibold text-xl pb-2 border-b'>Top Rated</p>
                         <div className='pt-5 space-y-3'>
                             {
@@ -126,7 +126,7 @@ const ProductSection = () => {
                                 ))
                             }
                         </div>
-                    </div>
+                    </div> */}
                 </div>
 
                 {/* deal of the day */}

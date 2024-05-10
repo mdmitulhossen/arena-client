@@ -16,6 +16,7 @@ import SellerAdmin from "../Layout/SellerAdmin";
 import Dashboard from "../pages/seller/Dashboard";
 import AllProducts from "../pages/seller/AllProducts";
 import AddProducts from "../pages/seller/AddProducts";
+import SellerProfile from "../pages/seller/SellerProfile";
 
 
 const Route = createBrowserRouter([
@@ -71,7 +72,7 @@ const Route = createBrowserRouter([
         ],
     },
     {
-        path: "/sellerAdmin",
+        path: "/sellerDashboard",
         element: <SellerAdmin/>,
         errorElement: <NotFoundPage />,
         children: [
@@ -81,7 +82,15 @@ const Route = createBrowserRouter([
                 element: <Dashboard/>,
             },
             {
+                path:'profile',
+                element:<SellerProfile/>
+            },
+            {
                 path:'products',
+                element:<AllProducts/>
+            },
+            {
+                path:'order',
                 element:<AllProducts/>
             },
             {
