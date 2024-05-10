@@ -17,10 +17,10 @@ const SellerProfile = () => {
                 <form className='mt-10 grid grid-cols-2 gap-10'>
                     {
                         seller && <div className=''>
-                            <label htmlFor="sellerName" className='block text-sm mb-2'>Seller Name</label>
+                            <label htmlFor="shopName" className='block text-sm mb-2'>Shop Name</label>
                             <input
-                                {...register("sellerName")}
-                                className='p-2 w-full focus:outline-[#366454]' type="text" name="sellerName" id="sellerName" placeholder='Enter sellerName' />
+                                {...register("shopName")}
+                                className='p-2 w-full focus:outline-[#366454]' type="text" name="shopName" id="shopName" placeholder='Enter shopName' />
 
                         </div>
                     }

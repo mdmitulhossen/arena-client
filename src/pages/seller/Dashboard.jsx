@@ -5,7 +5,7 @@ const Dashboard = () => {
     return (
         <div>
             <h1 className="px-5 text-[28px] lg:text-[36px] font-semibold">
-                Welcome To 
+                Welcome To
                 <span className="text-green-600">{" Armani Zone's"}</span>
             </h1>
             <div className="grid grid-cols-1 gap-4 px-4 mt-8 sm:grid-cols-3 sm:px-8">
@@ -17,7 +17,7 @@ const Dashboard = () => {
                         </path>
                     </svg></div>
                     <div className="px-4 text-gray-700">
-                        <h3 className="text-sm tracking-wider">Total Member</h3>
+                        <h3 className="text-sm tracking-wider">Total Products</h3>
                         <p className="text-3xl">12,768</p>
                     </div>
                 </div>
@@ -29,7 +29,7 @@ const Dashboard = () => {
                         </path>
                     </svg></div>
                     <div className="px-4 text-gray-700">
-                        <h3 className="text-sm tracking-wider">Total Post</h3>
+                        <h3 className="text-sm tracking-wider">Total Order</h3>
                         <p className="text-3xl">39,265</p>
                     </div>
                 </div>
@@ -41,7 +41,7 @@ const Dashboard = () => {
                         </path>
                     </svg></div>
                     <div className="px-4 text-gray-700">
-                        <h3 className="text-sm tracking-wider">Total Comment</h3>
+                        <h3 className="text-sm tracking-wider">Pending Order</h3>
                         <p className="text-3xl">142,334</p>
                     </div>
                 </div>
@@ -59,7 +59,7 @@ const Dashboard = () => {
                 </div>
             </div>
             <div className="w-full pt-20">
-                <SellerChart/>
+                <SellerChart />
             </div>
         </div>
     );

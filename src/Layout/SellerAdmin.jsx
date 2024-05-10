@@ -1,8 +1,10 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { FaBarsProgress } from "react-icons/fa6";
 import { IoMdAddCircle } from "react-icons/io";
+import { IoArrowBackCircleSharp } from "react-icons/io5";
 
 const SellerAdmin = () => {
+    const navigate = useNavigate()
     const seller = true
     return (
         <div className="bg-green-50">
@@ -36,7 +38,7 @@ const SellerAdmin = () => {
                                         className={({ isActive, isPending }) =>
                                             isPending ? "pending" : isActive ? "flex items-center p-2 text-gray-900 rounded-lg dark:text-white bg-gray-100 dark:bg-gray-700 group" : "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"}
                                     >
-                                       <FaBarsProgress />
+                                        <FaBarsProgress />
                                         <span className="ms-3">Profile</span>
                                     </NavLink>
                                 </li>
@@ -68,7 +70,7 @@ const SellerAdmin = () => {
                                         className={({ isActive, isPending }) =>
                                             isPending ? "pending" : isActive ? "flex items-center p-2 text-gray-900 rounded-lg dark:text-white bg-gray-100 dark:bg-gray-700 group" : "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"}
                                     >
-                                        <IoMdAddCircle size={25}/>
+                                        <IoMdAddCircle size={25} />
                                         <span className="flex-1 ms-3 whitespace-nowrap">Order</span>
                                     </NavLink>
                                 </li>
@@ -80,6 +82,12 @@ const SellerAdmin = () => {
                                             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3" />
                                         </svg>
                                         <span className="flex-1 ms-3 whitespace-nowrap">Sign Out</span>
+                                    </div>
+                                </li>
+                                <li onClick={() => navigate('/')}>
+                                    <div className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 cursor-pointer dark:hover:bg-gray-700 group">
+                                        <IoArrowBackCircleSharp size={25} />
+                                        <span className="flex-1 ms-3 whitespace-nowrap">Home</span>
                                     </div>
                                 </li>
 

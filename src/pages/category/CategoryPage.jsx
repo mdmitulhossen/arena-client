@@ -17,6 +17,7 @@ const CategoryPage = () => {
             behavior: "smooth"
         });
     }, []);
+    const sellerpage = true
     return (
         <div className="containerArena py-10">
             <Breadcrumb />
@@ -29,9 +30,9 @@ const CategoryPage = () => {
                 {/* right product side */}
                 <div className="lg:col-span-9 col-span-full">
                     <div className="">
-                        <div className=" bg-gray-50 text-center lg:py-10 md:py-8 py-6">
+                        {sellerpage && <div className=" bg-gray-50 text-center lg:py-10 md:py-8 py-6">
                             <p className=" w-10/12 mx-auto md:w-fullfont-semibold lg:text-4xl text-3xl lg:leading-9 md:leading-7 leading-9 text-center text-gray-800">Summer Collection Vol-1</p>
-                        </div>
+                        </div>}
                         <div className=" py-6">
 
 
