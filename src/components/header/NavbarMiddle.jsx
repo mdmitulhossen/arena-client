@@ -8,13 +8,21 @@ import { IoBagHandleOutline } from "react-icons/io5";
 import { useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
+import { useEffect, useState } from 'react';
 const NavbarMiddle = () => {
     const navigate = useNavigate();
+    const [cart, setCart] = useState([]);
     const seller = true
     const { user, logOut } = useAuth() || {};
     console.log(user)
 
     // console.log(user)
+
+    useEffect(() => {
+        const localCart = JSON.parse(localStorage.getItem("products")) || [];
+
+        setCart(localCart);
+    }, []);
 
 
     const handleLogOut = () => {
@@ -88,7 +96,7 @@ const NavbarMiddle = () => {
                     </button>
                     <button onClick={() => navigate('/cart')} className='relative'>
                         <IoBagHandleOutline size={30} />
-                        <span className='bg-arena-color px-[4px] rounded-full text-xs font-bold text-white absolute -top-1 -right-1'>0</span>
+                        <span className='bg-arena-color px-[4px] rounded-full text-xs font-bold text-white absolute -top-1 -right-1'>{cart?.length}</span>
                     </button>
 
 

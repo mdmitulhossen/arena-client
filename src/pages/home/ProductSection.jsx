@@ -10,6 +10,9 @@ import demo from '../../assets/bestSellers/sports-5.jpg'
 import TrendingProductCard from '../../components/cards/TrendingProductCard'
 import DealOfDayCard from '../../components/cards/DealOfDayCard'
 import ProductCard from '../../components/cards/ProductCard'
+import axios from 'axios'
+import { useQuery } from '@tanstack/react-query'
+import Spinner from '../../components/spinner/Spinner'
 const bestSellerData = [
     { name: 'Fabric Shoes', oldPrice: 15.00, newPrice: 7.00, rating: 3, img: demo },
     { name: "Men's T-Shirt", oldPrice: 8.00, newPrice: 4.00, rating: 4, img: demo },
@@ -24,6 +27,17 @@ const newArrivalData = [
     { name: 'Fabric Shoes', category: 'sports', oldPrice: 15.00, newPrice: 7.00, img: demo },
 ]
 const ProductSection = () => {
+    const ENV = import.meta.env
+    const { data: allProducts = [], isLoading, refetch, isSuccess } = useQuery({
+        queryKey: ['allProducts'],
+        queryFn: async () => {
+            const data = await axios.get(`${ENV.VITE_API_URL}/products`)
+            return data?.data
+        }
+    })
+
+    // console.log("products", allProducts)
+
     return (
         <div className="grid gap-5 grid-cols-12 w-full relative">
             <div className="lg:col-span-3 md:col-span-5 col-span-full md:sticky top-0  w-full md:h-screen md:overflow-y-auto homeSideBar pt-10">
@@ -137,9 +151,17 @@ const ProductSection = () => {
 
                 {/* New Product */}
                 <div className='pt-12'>
-                    <p className='font-semibold text-xl pb-2 border-b mb-6'>NEW PRODUCTS</p>
+                    <p className='font-semibold text-xl pb-2 border-b mb-6'>PRODUCTS</p>
 
                     <div className='grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-1 gap-4'>
+
+                        {
+                            isLoading ? <Spinner /> : allProducts?.data?.length === 0 ? <p>Empty data...</p> : allProducts?.data?.map((item, index) => (
+                                <ProductCard key={index} data={item} />
+                            ))
+                        }
+
+                        {/* <ProductCard />
                         <ProductCard />
                         <ProductCard />
                         <ProductCard />
@@ -147,8 +169,7 @@ const ProductSection = () => {
                         <ProductCard />
                         <ProductCard />
                         <ProductCard />
-                        <ProductCard />
-                        <ProductCard />
+                        <ProductCard /> */}
                     </div>
                 </div>
             </div>

@@ -2,6 +2,12 @@ import { useEffect, useState } from "react";
 import Breadcrumb from "../../components/breadcrumb/Breadcrumb";
 import { CiStar } from "react-icons/ci";
 import demoimg from '../../assets/bestSellers/shoe2.png'
+import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { Rating, Star } from "@smastrom/react-rating";
+import Spinner from "../../components/spinner/Spinner";
+import toast from "react-hot-toast";
 
 
 const ProductDetailsPage = () => {
@@ -9,6 +15,31 @@ const ProductDetailsPage = () => {
     const [show2, setShow2] = useState(false);
     const [color, setColor] = useState("White");
     const [size, setSize] = useState("");
+    const { id } = useParams()
+
+    // rating style
+    const ratingStyle = {
+        itemShapes: Star,
+        activeFillColor: '#ffb700',
+        inactiveFillColor: '#fbf1a9'
+    }
+
+
+    // product get
+
+    const ENV = import.meta.env
+    const { data: products = {}, isLoading, refetch, isSuccess } = useQuery({
+        queryKey: ['product'],
+        queryFn: async () => {
+            const data = await axios.get(`${ENV.VITE_API_URL}/products/${id}`)
+            return data?.data
+        }
+    })
+
+    const { category, imageUrls, name, price, priceAfterDiscount, rating, reviews, description } = products?.data || {}
+    // console.log("details", products)
+
+
 
 
     const getColor = (value) => {
@@ -18,15 +49,34 @@ const ProductDetailsPage = () => {
     const getSize = (value) => {
         setSize(value);
     };
+
+
+    // add to cart
+
+    const addToCart = () => {
+        const localCart = JSON.parse(localStorage.getItem("products")) || [];
+        const exist = localCart.find((item) => item.id === id);
+        if(exist){
+            toast.error("Product already in cart")
+        }else{
+            const newcartproduct=[...localCart,{product:products.data,size:size}]
+            localStorage.setItem("products", JSON.stringify(newcartproduct))
+            toast.success("Product added to cart")
+        }
+    }
+
+
     // scroll to top
     useEffect(() => {
         window.scrollTo({
             top: 0,
             left: 0,
             behavior: "smooth"
-          });
+        });
     }, []);
-    
+
+    if (isLoading) return <Spinner />
+
     return (
         <div className="py-10 containerArena">
             <Breadcrumb />
@@ -34,15 +84,15 @@ const ProductDetailsPage = () => {
             <div className="pt-10">
                 <div className="md:flex items-start justify-center py-12">
                     <div className=" md:block hidden max-w-[350px] w-full">
-                        <img className="w-full" alt="img of a girl posing" src={demoimg} />
-                        <img className="mt-6 w-full" alt="img of a girl posing" src={demoimg} />
+                        <img className="w-full" alt="product" src={imageUrls?.length === 0 ? demoimg : imageUrls[0]} />
+                        <img className="mt-6 w-full" alt="product" src={imageUrls?.length === 0 ? demoimg : imageUrls[1]} />
                     </div>
                     <div className="md:hidden">
                         <img className="w-full" alt="img of a girl posing" src={demoimg} />
                     </div>
                     <div className="lg:ml-8 md:ml-6 md:mt-0 mt-6">
                         <div className="border-b border-gray-200 pb-6">
-                            <p className="text-sm leading-none text-gray-600">Balenciaga Fall Collection</p>
+                            <p className="text-sm leading-none text-gray-600">{category}</p>
                             <h1
                                 className="
 							lg:text-2xl
@@ -54,7 +104,7 @@ const ProductDetailsPage = () => {
 							mt-2
 						"
                             >
-                                Balenciaga Signature Sweatshirt
+                                {name}
                             </h1>
                         </div>
 
@@ -62,17 +112,11 @@ const ProductDetailsPage = () => {
                         <div className="mt-6 md:mt-8 lg:mt-0 flex justify-start items-start w-full flex-col space-y-6">
 
                             <div className=" flex justify-start items-center mt-4">
-                                <p className="font-normal text-lg leading-6 text-gray-600 mr-4">$190</p>
+                                <p className="font-normal text-lg leading-6 text-gray-600 mr-4">{priceAfterDiscount}</p>
                                 <div className="cursor-pointer flex space-x-2 mr-3 text-xl">
-                                    <CiStar />
-                                    <CiStar />
-                                    <CiStar />
-                                    <CiStar />
-                                    <CiStar />
-
-
+                                    <Rating style={{ maxWidth: 100 }} readOnly value={rating} itemStyles={ratingStyle} />
                                 </div>
-                                <p className=" font-normal text-sm leading-3 hover:text-gray-700 duration-100 cursor-pointer text-gray-500 underline">18 reviews</p>
+                                <p className=" font-normal text-sm leading-3 hover:text-gray-700 duration-100 cursor-pointer text-gray-500 underline">{reviews?.length} reviews</p>
                             </div>
                             <div className="  mt-10">
                                 <p id="text" className=" font-semibold text-base leading-4 text-gray-800">
@@ -113,7 +157,7 @@ const ProductDetailsPage = () => {
                             <p className=" mt-4 font-normal text-sm leading-3 text-gray-500 hover:text-gray-600 duration-100 underline cursor-pointer">Find the perfect size?</p>
 
                             <div className="flex  w-full gap-5 pb-10">
-                                <button className="arenaBtn w-full py-3">Add to Cart</button>
+                                <button onClick={()=>addToCart()} className="arenaBtn w-full py-3">Add to Cart</button>
                                 <button className="arenaBtn w-full py-3">Add to Wishlist</button>
                             </div>
                         </div>
@@ -130,8 +174,8 @@ const ProductDetailsPage = () => {
                             Check availability in store
                         </button>
                         <div>
-                            <p className="xl:pr-48 text-base lg:leading-tight leading-normal text-gray-600 mt-7">It is a long established fact that a reader will be distracted by thereadable content of a page when looking at its layout. The point of usingLorem Ipsum is that it has a more-or-less normal distribution of letters.</p>
-                            <p className="text-base leading-4 mt-7 text-gray-600">Product Code: 8BN321AF2IF0NYA</p>
+                            <p className="xl:pr-48 text-base lg:leading-tight leading-normal text-gray-600 mt-7">{description}</p>
+                            <p className="text-base leading-4 mt-7 text-gray-600">Product Code: {id}</p>
                             <p className="text-base leading-4 mt-4 text-gray-600">Length: 13.2 inches</p>
                             <p className="text-base leading-4 mt-4 text-gray-600">Height: 10 inches</p>
                             <p className="text-base leading-4 mt-4 text-gray-600">Depth: 5.1 inches</p>
