@@ -5,9 +5,61 @@ import FilterSide from "./FilterSide";
 import { IoMenuOutline } from "react-icons/io5";
 import { MdFilterListAlt } from "react-icons/md";
 import Sort from "./Sort";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+import Spinner from "../../components/spinner/Spinner";
+import { useNavigate, useParams } from "react-router-dom";
 
 const CategoryPage = () => {
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
+    const [productsData, setProductsData] = useState([])
+    const [shopData, setShopData] = useState({})
+
+    const { id } = useParams()
+
+    const navigate = useNavigate();
+
+    // all products
+    const ENV = import.meta.env
+    const { data: allProducts = [], isLoading } = useQuery({
+        queryKey: ['allProductsInCategory'],
+        queryFn: async () => {
+            const data = await axios.get(`${ENV.VITE_API_URL}/products`)
+            return data
+        }
+    })
+
+    // shopdataById
+    // const { data: shopById = [],isLoading:shopIdLoading } = useQuery({
+    //     queryKey: ['shopById'],
+    //     queryFn: async () => {
+    //         const data = await axios.get(`${ENV.VITE_API_URL}/shops/${id}`)
+    //         return data?.data
+    //     }
+    // })
+
+
+
+
+
+    useEffect(() => {
+        if (id) {
+            const getProducts = async () => {
+                const data = await axios.get(`${ENV.VITE_API_URL}/shops/${id}/totalItems`)
+                setProductsData(data?.data)
+            }
+            const getShop = async () => {
+                const data = await axios.get(`${ENV.VITE_API_URL}/shops/${id}`)
+                setShopData(data?.data?.shop[0])
+            }
+            getProducts()
+            getShop()
+        } else {
+            setProductsData(allProducts?.data)
+        }
+    }, [allProducts, id, ENV])
+
+    console.log(" mitul", productsData)
 
     // scroll to top
     useEffect(() => {
@@ -17,7 +69,9 @@ const CategoryPage = () => {
             behavior: "smooth"
         });
     }, []);
-    const sellerpage = true
+    const sellerpage = id ? true : false
+
+    if (isLoading) return <Spinner />
     return (
         <div className="containerArena py-10">
             <Breadcrumb />
@@ -31,7 +85,10 @@ const CategoryPage = () => {
                 <div className="lg:col-span-9 col-span-full">
                     <div className="">
                         {sellerpage && <div className=" bg-gray-50 text-center lg:py-10 md:py-8 py-6">
-                            <p className=" w-10/12 mx-auto md:w-fullfont-semibold lg:text-4xl text-3xl lg:leading-9 md:leading-7 leading-9 text-center text-gray-800">Summer Collection Vol-1</p>
+                            <p className=" w-10/12 mx-auto md:w-fullfont-semibold lg:text-4xl text-3xl lg:leading-9 md:leading-7 leading-9 text-center text-gray-800">{
+                                //    !shopData || shopData?.shop?.lenght==0?"Crazy Shop":
+                                shopData?.name
+                            }</p>
                         </div>}
                         <div className=" py-6">
 
@@ -55,20 +112,24 @@ const CategoryPage = () => {
                                         <Sort />
                                     </div>
                                 </div>
-                                <p className=" cursor-pointer hover:underline duration-100 font-normal text-base leading-4 text-gray-600">Showing 18 products</p>
+                                <div className="flex gap-3 items-center">
+                                    {
+                                        sellerpage && <button onClick={() => navigate(`/create&order/${shopData?._id}`)} className="arenaBtn py-2 px-3">
+                                            Create Custom Order
+                                        </button>
+                                    }
+                                    <p className=" cursor-pointer hover:underline duration-100 font-normal text-base leading-4 text-gray-600">Showing {productsData?.data?.length} products</p>
+                                </div>
                             </div>
 
                             <div className=" grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 lg:gap-y-8 lg:gap-x-5 sm:gap-y-10 sm:gap-x-6 gap-y-6 lg:mt-12 mt-10">
                                 {/* products */}
-                                <ProductCard />
-                                <ProductCard />
-                                <ProductCard />
-                                <ProductCard />
-                                <ProductCard />
-                                <ProductCard />
-                                <ProductCard />
-                                <ProductCard />
-                                <ProductCard />
+                                {productsData?.data?.length === 0 || !productsData ? <p className=" text-center w-full">No products available</p> :
+                                    productsData?.data?.map((product, index) => (
+                                        <ProductCard key={index} data={product} />
+                                    ))
+                                }
+
 
                             </div>
 

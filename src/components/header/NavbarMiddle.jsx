@@ -34,7 +34,7 @@ const NavbarMiddle = () => {
     return (
         <div className='border-b'>
             <div className='flex justify-between items-center containerArena py-1 gap-3'>
-                <div>
+                <div onClick={()=>navigate('/')}>
                     <img src={logo} className='md:w-[120px] w-20' alt="logo" />
                 </div>
                 <div className='w-3/5 hidden md:block'>

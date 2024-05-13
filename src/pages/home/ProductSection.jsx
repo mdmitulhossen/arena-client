@@ -13,6 +13,7 @@ import ProductCard from '../../components/cards/ProductCard'
 import axios from 'axios'
 import { useQuery } from '@tanstack/react-query'
 import Spinner from '../../components/spinner/Spinner'
+import ShopsCard from '../../components/cards/ShopsCard'
 const bestSellerData = [
     { name: 'Fabric Shoes', oldPrice: 15.00, newPrice: 7.00, rating: 3, img: demo },
     { name: "Men's T-Shirt", oldPrice: 8.00, newPrice: 4.00, rating: 4, img: demo },
@@ -20,12 +21,12 @@ const bestSellerData = [
     { name: 'Fabric Shoes', oldPrice: 10.00, newPrice: 5.00, rating: 5, img: demo },
 ]
 
-const newArrivalData = [
-    { name: 'Winter wear Jacket leather', category: 'sports', oldPrice: 15.00, newPrice: 7.00, img: demo },
-    { name: 'Fabric Shoes', category: 'sports', oldPrice: 15.00, newPrice: 7.00, img: demo },
-    { name: 'Fabric Shoes', category: 'sports', oldPrice: 15.00, newPrice: 7.00, img: demo },
-    { name: 'Fabric Shoes', category: 'sports', oldPrice: 15.00, newPrice: 7.00, img: demo },
-]
+// const newArrivalData = [
+//     { name: 'Winter wear Jacket leather', category: 'sports', oldPrice: 15.00, newPrice: 7.00, img: demo },
+//     { name: 'Fabric Shoes', category: 'sports', oldPrice: 15.00, newPrice: 7.00, img: demo },
+//     { name: 'Fabric Shoes', category: 'sports', oldPrice: 15.00, newPrice: 7.00, img: demo },
+//     { name: 'Fabric Shoes', category: 'sports', oldPrice: 15.00, newPrice: 7.00, img: demo },
+// ]
 const ProductSection = () => {
     const ENV = import.meta.env
     const { data: allProducts = [], isLoading, refetch, isSuccess } = useQuery({
@@ -36,7 +37,36 @@ const ProductSection = () => {
         }
     })
 
-    // console.log("products", allProducts)
+    // newArivalData
+    const { data: newArivalData = [] } = useQuery({
+        queryKey: ['newArrivalData'],
+        queryFn: async () => {
+            const data = await axios.get(`${ENV.VITE_API_URL}/products/latest`)
+            return data?.data
+        }
+    })
+
+    // shops
+    const { data: shops = [] } = useQuery({
+        queryKey: ['shops'],
+        queryFn: async () => {
+            const data = await axios.get(`${ENV.VITE_API_URL}/shops`)
+            return data?.data
+        }
+    })
+
+    // toRatedData
+
+    const { data: topRated = [] } = useQuery({
+        queryKey: ['topRated'],
+        queryFn: async () => {
+            const data = await axios.get(`${ENV.VITE_API_URL}/products/topRated`)
+            return data?.data
+        }
+    })
+
+    // console.log(shops)
+ 
 
     return (
         <div className="grid gap-5 grid-cols-12 w-full relative">
@@ -97,8 +127,9 @@ const ProductSection = () => {
                     <p className='font-medium text-lg'>BEST SELLERS</p>
                     <div className='pt-2 space-y-4'>
                         {
-                            bestSellerData.map((item, index) => (
-                                <BestSellerCard key={index} data={item} />
+                            !shops || shops?.shops?.length === 0 ? <p>Empty data...</p> :
+                            shops?.shops?.slice(0,5).map((item, index) => (
+                                <ShopsCard key={index} data={item} />
                             ))
                         }
                     </div>
@@ -112,11 +143,14 @@ const ProductSection = () => {
                     <div>
                         <p className='font-semibold text-xl pb-2 border-b'>New Arrivals</p>
                         <div className='pt-5 space-y-3'>
+
                             {
-                                newArrivalData.map((item, index) => (
-                                    <TrendingProductCard key={index} data={item} />
-                                ))
+                                !newArivalData || newArivalData?.data?.length === 0 ? <p>Empty data...</p> :
+                                    newArivalData?.data?.slice(0,5)?.map((item, index) => (
+                                        <TrendingProductCard key={index} data={item} />
+                                    ))
                             }
+
                         </div>
                     </div>
                     {/* trendings */}
@@ -124,9 +158,10 @@ const ProductSection = () => {
                         <p className='font-semibold text-xl pb-2 border-b'>Trending</p>
                         <div className='pt-5 space-y-3'>
                             {
-                                newArrivalData.map((item, index) => (
-                                    <TrendingProductCard key={index} data={item} />
-                                ))
+                                !topRated || topRated?.data?.length === 0 ? <p>Empty data...</p> :
+                                topRated?.data?.slice(0,5)?.map((item, index) => (
+                                        <TrendingProductCard key={index} data={item} />
+                                    ))
                             }
                         </div>
                     </div>
@@ -161,15 +196,7 @@ const ProductSection = () => {
                             ))
                         }
 
-                        {/* <ProductCard />
-                        <ProductCard />
-                        <ProductCard />
-                        <ProductCard />
-                        <ProductCard />
-                        <ProductCard />
-                        <ProductCard />
-                        <ProductCard />
-                        <ProductCard /> */}
+                  
                     </div>
                 </div>
             </div>

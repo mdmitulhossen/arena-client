@@ -4,7 +4,7 @@ import { useState } from "react";
 import { fabricData } from "../../utilitis/demoData";
 import sizeChar from '../../assets/T-shirt-size-charts.webp'
 
-const CreateDesignForm = () => {
+const CreateDesignForm = ({name}) => {
     const [size, setSize] = useState([1])
     const {
         register,
@@ -52,7 +52,7 @@ const CreateDesignForm = () => {
                         Shop Name
                     </p>
                     <p className="text-lg text-[#000]/60 font-medium">
-                        Classic t-shirt
+                    {name}
                     </p>
                 </div>
                 {/* Quantity */}

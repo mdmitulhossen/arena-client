@@ -17,7 +17,7 @@ const ProductCard = ({ data }) => {
 
     const { id, category, imageUrls, name, price, priceAfterDiscount, rating } = data || {}
 
-    console.log(imageUrls)
+    // console.log(imageUrls)
     // console.log(data.data)
     return (
         <div className="w-full border rounded-md shadow p-4 group relative">

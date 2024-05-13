@@ -16,6 +16,9 @@ import tcd3 from '../../assets/design/3.png'
 import tcd4 from '../../assets/design/4.png'
 import CreateDesignForm from "../../components/form/CreateDesignForm";
 import { IoCloudUploadOutline } from "react-icons/io5";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import Spinner from "../../components/spinner/Spinner";
 
 const tShirtColorData = [
     {
@@ -71,10 +74,21 @@ const tShirtDesignData = [
     }
 ]
 
-const CreateDesignPage = () => {
+const CreateDesignPage = ({ shopId }) => {
     const [tShirtColor, setTShirtColor] = useState(tShirtColorData[0])
     const [tShirtDesign, setTShirtDesign] = useState(tShirtDesignData[0])
     const [choose, setChoose] = useState('create')
+
+    // shop
+    const ENV = import.meta.env
+    const { data: shop = {}, isLoading } = useQuery({
+        queryKey: ['shopById'],
+        queryFn: async () => {
+            const data = await axios.get(`${ENV.VITE_API_URL}/shops/${shopId}`)
+            return data?.data?.shop[0]
+        }
+    })
+
 
     // for image upload
     const fileInput = useRef(null);
@@ -105,6 +119,9 @@ const CreateDesignPage = () => {
         }
 
     }
+
+    if (isLoading) return <Spinner/>
+
     return (
         <div className="pt-6">
             <div className="space-y-2">
@@ -115,7 +132,7 @@ const CreateDesignPage = () => {
                 </select>
             </div>
 
-           
+
 
             {/* create & order*/}
             <div className="grid lg:grid-cols-2 gap-16 pt-10">
@@ -187,7 +204,7 @@ const CreateDesignPage = () => {
 
                 {/* right Side */}
                 <div className="">
-                    <CreateDesignForm />
+                    <CreateDesignForm name={shop.name}/>
                 </div>
             </div>
         </div>

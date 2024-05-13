@@ -42,7 +42,11 @@ const Route = createBrowserRouter([
                 element: <CategoryPage />
             },
             {
-                path: "/create&Order",
+                path: "/category/:id",
+                element: <CategoryPage />
+            },
+            {
+                path: "/create&order/:id",
                 element: <CreateOrder />
             },
             {
