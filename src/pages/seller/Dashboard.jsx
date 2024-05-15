@@ -1,12 +1,20 @@
+import { useEffect, useState } from "react";
 import SellerChart from "../../components/chart/SellerChart";
 
 
 const Dashboard = () => {
+    const [userData, setUserData] = useState({})
+
+    useEffect(() => {
+        const localData = JSON.parse(localStorage.getItem('user'))
+        console.log(localData, "localData")
+        setUserData(localData)
+    }, [])
     return (
         <div>
             <h1 className="px-5 text-[28px] lg:text-[36px] font-semibold">
                 Welcome To
-                <span className="text-green-600">{" Armani Zone's"}</span>
+                <span className="text-green-600">{userData?.name || " Armani Zone's"}</span>
             </h1>
             <div className="grid grid-cols-1 gap-4 px-4 mt-8 sm:grid-cols-3 sm:px-8">
                 <div className="flex items-center bg-white border rounded-sm overflow-hidden shadow">
@@ -18,7 +26,9 @@ const Dashboard = () => {
                     </svg></div>
                     <div className="px-4 text-gray-700">
                         <h3 className="text-sm tracking-wider">Total Products</h3>
-                        <p className="text-3xl">12,768</p>
+                        <p className="text-3xl">{
+                            userData?.productSaleCount
+                        }</p>
                     </div>
                 </div>
                 <div className="flex items-center bg-white border rounded-sm overflow-hidden shadow">
@@ -30,7 +40,7 @@ const Dashboard = () => {
                     </svg></div>
                     <div className="px-4 text-gray-700">
                         <h3 className="text-sm tracking-wider">Total Order</h3>
-                        <p className="text-3xl">39,265</p>
+                        <p className="text-3xl">0</p>
                     </div>
                 </div>
                 <div className="flex items-center bg-white border rounded-sm overflow-hidden shadow">
@@ -42,10 +52,10 @@ const Dashboard = () => {
                     </svg></div>
                     <div className="px-4 text-gray-700">
                         <h3 className="text-sm tracking-wider">Pending Order</h3>
-                        <p className="text-3xl">142,334</p>
+                        <p className="text-3xl">0</p>
                     </div>
                 </div>
-                <div className="flex items-center bg-white border rounded-sm overflow-hidden shadow">
+                {/* <div className="flex items-center bg-white border rounded-sm overflow-hidden shadow">
                     <div className="p-4 bg-red-400"><svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-white" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
@@ -56,7 +66,7 @@ const Dashboard = () => {
                         <h3 className="text-sm tracking-wider">Server Load</h3>
                         <p className="text-3xl">34.12%</p>
                     </div>
-                </div>
+                </div> */}
             </div>
             <div className="w-full pt-20">
                 <SellerChart />

@@ -1,11 +1,14 @@
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import SizeWithQuantity from "./SizeWithQuantity";
 import { useState } from "react";
 import { fabricData } from "../../utilitis/demoData";
 import sizeChar from '../../assets/T-shirt-size-charts.webp'
+import { useNavigate } from "react-router-dom";
+import useCart from "../../hooks/useCart";
 
-const CreateDesignForm = ({name}) => {
-    const [size, setSize] = useState([1])
+const CreateDesignForm = ({ name, setFormData }) => {
+    const navigate = useNavigate()
+    const [sizeField, setSizeField] = useState([1])
     const {
         register,
         handleSubmit,
@@ -13,10 +16,12 @@ const CreateDesignForm = ({name}) => {
         formState: { errors },
     } = useForm()
 
+    const { setCustomOrder, customOrder } = useCart() || {};
+
     const handleSize = () => {
-        const sizLength = size?.length
-        const newSize = [...size, sizLength + 1]
-        setSize(newSize)
+        const sizLength = sizeField?.length
+        const newSize = [...sizeField, sizLength + 1]
+        setSizeField(newSize)
 
     }
 
@@ -36,11 +41,15 @@ const CreateDesignForm = ({name}) => {
 
         const newdata = {
             quantity: data.quantity,
-            size: sizeAndItems,
-            fabric: data.fabric
+            color: 'red',
+            url: 'https://www.google.com',
         }
+        setCustomOrder(newdata)
+        setFormData(newdata)
 
-        console.log(newdata)
+        navigate('/customCheckout')
+
+        // console.log(newdata)
     }
 
 
@@ -52,7 +61,7 @@ const CreateDesignForm = ({name}) => {
                         Shop Name
                     </p>
                     <p className="text-lg text-[#000]/60 font-medium">
-                    {name}
+                        {name}
                     </p>
                 </div>
                 {/* Quantity */}
@@ -72,7 +81,7 @@ const CreateDesignForm = ({name}) => {
 
                     <div className="space-y-3">
                         {
-                            size?.map((s, i) => (
+                            sizeField?.map((s, i) => (
                                 <SizeWithQuantity key={i} register={register} size={`size${i + 1}`} itemsNumber={`itemsNumber${i + 1}`} />
                             ))
                         }
@@ -109,7 +118,7 @@ const CreateDesignForm = ({name}) => {
             {/* btn */}
             <div className="flex gap-6 mt-8">
                 <input className=" px-5 py-3 w-full cursor-pointer arenaBtn" type="submit" value='Order Now' />
-                <p className="px-5 py-3 border inline-block cursor-pointer arenaBtn w-full text-center flex items-center justify-center">ADD TO CART</p>
+                {/* <p className="px-5 py-3 border inline-block cursor-pointer arenaBtn w-full text-center flex items-center justify-center">ADD TO CART</p> */}
             </div>
         </form>
     );

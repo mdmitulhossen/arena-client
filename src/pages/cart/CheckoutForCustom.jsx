@@ -1,3 +1,5 @@
+
+
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Breadcrumb from "../../components/breadcrumb/Breadcrumb";
@@ -9,7 +11,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 
-const CheckoutPage = () => {
+const CheckoutForCustom = () => {
     const ENV = import.meta.env
     const [cashOnD, setCashOnD] = useState(false)
     const {
@@ -29,34 +31,37 @@ const CheckoutPage = () => {
 
 
     // cartContext
-    const { cart, subTotalPrize, shipping,itemQuantity } = useCart() || {};
+    const { setCustomOrder, customOrder } = useCart() || {};
 
-    console.log(itemQuantity)
+   
+
 
 
     const handleCheckout = (data) => {
 
-        const productId = cart?.map(item => item?.product?.id)
+  
 
-        const { fName, lName, address, city, country, phone, paymentMethod } = data || {}
 
         const newData ={
-            orderItems: itemQuantity,
-            shippingAddress:address,
+            totalPrice: 200,
+            shippingAddress:data?.address,
             paymentMethod:"cashOnD",
+            customOrder:customOrder
         }
 
-        axios.post(`${ENV.VITE_API_URL}/orders/placeOrder`,newData,{ withCredentials: true })
+        axios.post(`${ENV.VITE_API_URL}/orders/addcustom`,newData,{ withCredentials: true })
         .then(res => {
+            console.log(res)
             toast.success('Order placed successfully')
         })
-        .catch(err => 
-            toast.error('Order placed unSuccessfully')
+        .catch(err =>{
+            console.log(err)
+            toast.error('Order placed unSuccessfully')}
             )
 
-        console.log(newData, 'newData')
+        // console.log(newData, 'newData')
 
-        
+
     }
     return (
         <div className="containerArena py-10">
@@ -120,7 +125,7 @@ const CheckoutPage = () => {
                             </div>
                         </form>
                         {/* right */}
-                        <div className="flex flex-col justify-start items-start bg-gray-50 w-full p-6 md:p-14">
+                        {/* <div className="flex flex-col justify-start items-start bg-gray-50 w-full p-6 md:p-14">
                             <div>
                                 <h1 className="text-2xl font-semibold leading-6 text-gray-800">Order Summary</h1>
                             </div>
@@ -146,7 +151,7 @@ const CheckoutPage = () => {
                                 <p className="text-xl font-semibold leading-4 text-gray-800">Estimated Total </p>
                                 <p className="text-lg font-semibold leading-4 text-gray-800">${subTotalPrize + shipping}</p>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
@@ -154,4 +159,5 @@ const CheckoutPage = () => {
     );
 };
 
-export default CheckoutPage;
+export default CheckoutForCustom;
+

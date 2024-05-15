@@ -1,9 +1,18 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import useCart from "../../hooks/useCart";
 
 
 const CartCard = ({ data }) => {
     const [cart, setCart] = useState([]);
+    const [quantity, setQuantity] = useState(1)
+
+    // cartContext
+    const { cart:allCart,setItemQuantity,itemQuantity } = useCart() || {};
+
+   
+
+    console.log(quantity)
 
     const { category, imageUrls, name, price, priceAfterDiscount, rating, reviews, description, id } = data?.product || {}
 
@@ -22,8 +31,16 @@ const CartCard = ({ data }) => {
         toast.success("Item removed from cart")
         window.location.reload()
         setCart(newCart)
-
     }
+
+    useEffect(() => {
+        const newitems= {
+            product:id,
+            quantity:quantity
+        }
+        setItemQuantity([...itemQuantity,newitems])
+    }, [quantity])
+
     return (
         <div>
             <div className="md:flex items-center py-8 border-t border-gray-200">
@@ -34,7 +51,7 @@ const CartCard = ({ data }) => {
                     <p className="text-sm leading-3 text-gray-800 md:pt-0 pt-4">RF293</p>
                     <div className="flex items-center justify-between w-full pt-1">
                         <p className="text-2xl leading-none text-gray-800 font-semibold">{name}</p>
-                        <input type="number" className="mr-6 border border-gray-400 py-1 px-3 max-w-[100px] rounded-md" placeholder="Quantity" defaultValue={1} min={1} />
+                        <input onChange={(e)=>setQuantity(e.target.value)} type="number" className="mr-6 border border-gray-400 py-1 px-3 max-w-[100px] rounded-md" placeholder="Quantity" defaultValue={1} min={1} />
                     </div>
                     <p className="leading-3 text-gray-600 pt-2">Height: 10 inches</p>
                     <p className="leading-3 text-gray-600 py-4">Size: {data?.size}</p>

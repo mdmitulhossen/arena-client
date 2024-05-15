@@ -24,34 +24,42 @@ const tShirtColorData = [
     {
         id: 1,
         color: tc1,
+        colorName: 'blue'
     },
     {
         id: 2,
         color: tc2,
+        colorName: 'black'
     },
     {
         id: 3,
         color: tc3,
+        colorName: 'gray'
     },
     {
         id: 4,
         color: tc4,
+        colorName: 'green'
     },
     {
         id: 5,
         color: tc5,
+        colorName: 'olive'
     },
     {
         id: 6,
         color: tc6,
+        colorName: 'tiya'
     },
     {
         id: 7,
         color: tc7,
+        colorName: 'brown'
     },
     {
         id: 8,
         color: tc8,
+        colorName: 'red'
     }
 ]
 
@@ -78,6 +86,11 @@ const CreateDesignPage = ({ shopId }) => {
     const [tShirtColor, setTShirtColor] = useState(tShirtColorData[0])
     const [tShirtDesign, setTShirtDesign] = useState(tShirtDesignData[0])
     const [choose, setChoose] = useState('create')
+
+
+    const [formData, setFormData] = useState({})
+
+    console.log({ ...formData, color: tShirtColor }, "custom order data")
 
     // shop
     const ENV = import.meta.env
@@ -120,7 +133,7 @@ const CreateDesignPage = ({ shopId }) => {
 
     }
 
-    if (isLoading) return <Spinner/>
+    if (isLoading) return <Spinner />
 
     return (
         <div className="pt-6">
@@ -204,7 +217,11 @@ const CreateDesignPage = ({ shopId }) => {
 
                 {/* right Side */}
                 <div className="">
-                    <CreateDesignForm name={shop.name}/>
+                    <CreateDesignForm
+                        setFormData={setFormData}
+                        name={shop.name}
+
+                    />
                 </div>
             </div>
         </div>

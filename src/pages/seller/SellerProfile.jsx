@@ -1,8 +1,18 @@
 import { useForm } from 'react-hook-form';
 import profileImage from '../../assets/logo/logo.png'
+import { useEffect, useState } from 'react';
 
 const SellerProfile = () => {
+    const [user, setUser] = useState({})
+
+    useEffect(() => {
+        const userFromLocal = localStorage.getItem('user')
+        setUser(JSON.parse(userFromLocal))
+
+    }, [])
     const seller = true
+
+    console.log(user)
     const {
         register,
         handleSubmit,
@@ -16,7 +26,7 @@ const SellerProfile = () => {
                 </div>
                 <form className='mt-10 grid grid-cols-2 gap-10'>
                     {
-                        seller && <div className=''>
+                        user?.role=='shop' && <div className=''>
                             <label htmlFor="shopName" className='block text-sm mb-2'>Shop Name</label>
                             <input
                                 {...register("shopName")}
@@ -25,7 +35,7 @@ const SellerProfile = () => {
                         </div>
                     }
                     <div className=''>
-                        <label htmlFor="sellerName" className='block text-sm mb-2'>Seller Name</label>
+                        <label htmlFor="sellerName" className='block text-sm mb-2'>User Name</label>
                         <input
                             {...register("sellerName")}
                             className='p-2 w-full focus:outline-[#366454]' type="text" name="sellerName" id="sellerName" placeholder='Enter sellerName' />

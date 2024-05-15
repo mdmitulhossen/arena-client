@@ -6,11 +6,13 @@ import useAuth from '../../hooks/useAuth';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { PuffLoader } from 'react-spinners';
+import axios from 'axios';
 const RegisterPage = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const { signUpWithEmailPassword, updateUserProfile, loading, setLoading,
     } = useAuth() || {};
+    const ENV = import.meta.env
 
     const {
         register,
@@ -23,30 +25,20 @@ const RegisterPage = () => {
         const { name, email, password, phone } = data || {}
         console.log(data)
 
-        // if (password.length < 6) {
-        //     toast.error("Password must be at least 6 characters")
-        //     return
-        // }
-        //create user
+
+
+
         signUpWithEmailPassword(email, password)
             .then((result) => {
-                // updateUserProfile({ displayName: name, photoURL: photoURL })
-                //     .then((r) => {
-                //         axios.post('https://food-surplus-saver.vercel.app/jwt', { email: r?.user.email }, { withCredentials: true })
-                //             .then(res => {
-                //                 setLoading(false);
-                //                 navigate(location?.state ? location.state : "/");
-                //                 toast.success("Registration successful");
-                //             })
-
-                //     })
-                //     .catch((err) => {
-                //         setLoading(false);
-                //         toast.error(err.message);
-                //     });
-                setLoading(false);
-                navigate(location?.state ? location.state : "/");
-                toast.success("Registration successful");
+                axios.post(`${ENV.VITE_API_URL}/users/signup`,{name,email,password,phone},{ withCredentials: true })
+                .then(res => {
+                    setLoading(false);
+                    localStorage.setItem('user', JSON.stringify(res?.data?.user));
+                    // console.log(res)
+                    navigate(location?.state ? location.state : "/");
+                    toast.success("Register successful");
+                })
+                
             })
             .catch((err) => {
                 toast.error(err.message);

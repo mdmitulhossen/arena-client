@@ -10,6 +10,7 @@ import { PuffLoader } from "react-spinners";
 const LoginPage = () => {
     const navigate = useNavigate();
     const { loading, signInWithEmailPassword, setLoading, googleSignIn, githubSignIn } = useAuth() || {};
+    const ENV = import.meta.env
     const {
         register,
         handleSubmit,
@@ -45,16 +46,18 @@ const LoginPage = () => {
 
         signInWithEmailPassword(email, password)
             .then((result) => {
-                // axios.post('https://food-surplus-saver.vercel.app/jwt', { email }, { withCredentials: true })
-                //     .then(res => {
-                //         setLoading(false);
-                //         console.log(res)
-                //         navigate(location?.state ? location.state : "/");
-                //         toast.success("Login successful");
-                //     })
-                setLoading(false);
-                navigate(location?.state ? location.state : "/");
-                toast.success("Login successful");
+                // await axios.get(`${ENV.VITE_API_URL}/products`)
+                axios.post(`${ENV.VITE_API_URL}/users/login`,{email,password},{ withCredentials: true })
+                    .then(res => {
+                        setLoading(false);
+                        console.log(res)
+                        localStorage.setItem('user', JSON.stringify(res?.data?.user));
+                        navigate(location?.state ? location.state : "/");
+                        toast.success("Login successful");
+                    })
+                // setLoading(false);
+                // navigate(location?.state ? location.state : "/");
+                // toast.success("Login successful");
 
             })
             .catch((err) => {
@@ -68,10 +71,16 @@ const LoginPage = () => {
         <div className='py-12 flex justify-center items-center containerArena'>
             <div className='lg:min-w-[850px]'>
                 <div className='md:flex justify-between pb-5 text-lg text-[#366454]'>
-                    <p>
+                   <div>
+                   <p>
                         Become a
                         <span onClick={() => navigate('/sellerRegister')} className=' text-blue-400 cursor-pointer'> Seller</span>
+                    </p> 
+                    <p>
+                        Already a seller?
+                        <span onClick={() => navigate('/sellerLogin')} className=' text-blue-400 cursor-pointer'> Login</span>
                     </p>
+                   </div>
                     <p className='text-base'>
                         New member?
                         <span onClick={() => navigate('/register')} className=' text-blue-400 cursor-pointer'> Register </span>

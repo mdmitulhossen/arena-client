@@ -7,6 +7,8 @@ const CartContextProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
     const [subTotalPrize, setSubTotalPrize] = useState(0);
     const [shipping, setShipping] = useState(5)
+    const [itemQuantity, setItemQuantity] = useState([])
+    const [customOrder, setCustomOrder] = useState([{ color: '', url: '',quantity:'1'}])
 
     // handle cart
     useEffect(() => {
@@ -27,7 +29,11 @@ const CartContextProvider = ({ children }) => {
         subTotalPrize,
         setSubTotalPrize,
         shipping,
-        setShipping
+        setShipping,
+        setItemQuantity,
+        itemQuantity,
+        setCustomOrder,
+        customOrder
     }
 
 

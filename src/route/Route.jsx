@@ -17,6 +17,8 @@ import Dashboard from "../pages/seller/Dashboard";
 import AllProducts from "../pages/seller/AllProducts";
 import AddProducts from "../pages/seller/AddProducts";
 import SellerProfile from "../pages/seller/SellerProfile";
+import SellerLogin from "../pages/auth/SellerLogin";
+import CheckoutForCustom from "../pages/cart/CheckoutForCustom";
 
 
 const Route = createBrowserRouter([
@@ -58,12 +60,20 @@ const Route = createBrowserRouter([
                 element: <CheckoutPage/>
             },
             {
+                path: "/customCheckout",
+                element: <CheckoutForCustom/>
+            },
+            {
                 path: "/favourite",
                 element: <Favourte/>
             },
             {
                 path: "/sellerRegister",
                 element: <SellerPage/>
+            },
+            {
+                path: "/sellerLogin",
+                element: <SellerLogin/>
             },
             {
                 path: "/register",

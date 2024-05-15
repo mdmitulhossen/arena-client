@@ -4,6 +4,7 @@ import useAuth from '../../hooks/useAuth';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { PuffLoader } from 'react-spinners';
+import axios from 'axios';
 
 const SellerPage = () => {
     const [showpass, setShowPass] = useState(false)
@@ -19,6 +20,7 @@ const SellerPage = () => {
 
     // Handle register
     const handleSellerRegister = (data) => {
+        const ENV = import.meta.env
         const { name, email, password } = data || {}
         console.log(data)
 
@@ -30,9 +32,14 @@ const SellerPage = () => {
         signUpWithEmailPassword(email, password)
             .then((result) => {
 
-                setLoading(false);
-                navigate(location?.state ? location.state : "/");
-                toast.success("Registration successful");
+                axios.post(`${ENV.VITE_API_URL}/shops/signup`,{name,email,password,phone:'01712312312'},{ withCredentials: true })
+                .then(res => {
+                    setLoading(false);
+                    localStorage.setItem('user', JSON.stringify(res?.data?.user));
+                    // console.log(res)
+                    navigate(location?.state ? location.state : "/");
+                    toast.success("Register successful");
+                })
             })
             .catch((err) => {
                 toast.error(err.message);
