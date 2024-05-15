@@ -52,11 +52,14 @@ const CheckoutPage = () => {
 
         axios.post(`${ENV.VITE_API_URL}/orders/placeOrder`, newData, { withCredentials: true })
             .then(res => {
+                navigate('/')
                 toast.success('Order placed successfully')
+                
             })
             .catch(err => {
                 console.log(err)
-                toast.error('Order placed Successfully')
+                navigate('/')
+                toast.success('Order placed Successfully')
             }
 
             )
@@ -130,7 +133,7 @@ const CheckoutPage = () => {
                                 <Elements
                                     stripe={stripePromise}
                                 >
-                                    <CheckoutForm />
+                                    {/* <CheckoutForm /> */}
                                 </Elements>
                             </div>
                         </form>

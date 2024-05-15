@@ -23,10 +23,15 @@ const AllProductsTable = () => {
         // })
     }, [])
 
+    console.log(localdata, 'localdata')
+
     const { data: allProductsInShop = [], isLoading } = useQuery({
         queryKey: ['allProductsInShop'],
         queryFn: async () => {
             const data = await axios.get(`${ENV.VITE_API_URL}/shops/${localdata._id}`, { withCredentials: true })
+
+            // axios.get(`${ENV.VITE_API_URL}/shops/${localdata._id}`, { withCredentials: true }).then((res) => { }).catch((err) => { console.log(err) })
+
             // console.log(data)
             return data?.data?.products
         }
@@ -60,7 +65,7 @@ const AllProductsTable = () => {
                     </thead>
                     <tbody>
                         {
-                            allProductsInShop.map((product, index) => <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            allProductsInShop?.map((product, index) => <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {
                                         product?.id}

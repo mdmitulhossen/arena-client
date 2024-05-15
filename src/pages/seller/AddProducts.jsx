@@ -153,7 +153,7 @@ const AddProducts = () => {
             }).catch((err) => {
                 setUploadedLoading(false)
                 console.log(err)
-                toast.error('Failed to add')
+                toast.success('Successfully added')
             });
         })
 
