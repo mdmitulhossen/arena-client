@@ -7,6 +7,10 @@ import useCart from "../../hooks/useCart";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { loadStripe } from "@stripe/stripe-js";
+import { CardElement, Elements } from "@stripe/react-stripe-js";
+
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLICK_KEY);
 
 
 const CheckoutPage = () => {
@@ -29,7 +33,7 @@ const CheckoutPage = () => {
 
 
     // cartContext
-    const { cart, subTotalPrize, shipping,itemQuantity } = useCart() || {};
+    const { cart, subTotalPrize, shipping, itemQuantity } = useCart() || {};
 
     console.log(itemQuantity)
 
@@ -40,23 +44,26 @@ const CheckoutPage = () => {
 
         const { fName, lName, address, city, country, phone, paymentMethod } = data || {}
 
-        const newData ={
+        const newData = {
             orderItems: itemQuantity,
-            shippingAddress:address,
-            paymentMethod:"cashOnD",
+            shippingAddress: address,
+            paymentMethod: "cashOnD",
         }
 
-        axios.post(`${ENV.VITE_API_URL}/orders/placeOrder`,newData,{ withCredentials: true })
-        .then(res => {
-            toast.success('Order placed successfully')
-        })
-        .catch(err => 
-            toast.error('Order placed unSuccessfully')
+        axios.post(`${ENV.VITE_API_URL}/orders/placeOrder`, newData, { withCredentials: true })
+            .then(res => {
+                toast.success('Order placed successfully')
+            })
+            .catch(err => {
+                console.log(err)
+                toast.error('Order placed Successfully')
+            }
+
             )
 
         console.log(newData, 'newData')
 
-        
+
     }
     return (
         <div className="containerArena py-10">
@@ -117,6 +124,14 @@ const CheckoutPage = () => {
                                 <a href="javascript:void(0)" onClick={() => navigate('/cart')} className="text-base leading-4 underline focus:outline-none focus:text-gray-500  hover:text-gray-800 text-gray-600">
                                     Back to my bag
                                 </a>
+                            </div>
+
+                            <div>
+                                <Elements
+                                    stripe={stripePromise}
+                                >
+                                    <CheckoutForm />
+                                </Elements>
                             </div>
                         </form>
                         {/* right */}

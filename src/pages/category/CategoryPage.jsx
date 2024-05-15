@@ -15,7 +15,11 @@ const CategoryPage = () => {
     const [productsData, setProductsData] = useState([])
     const [shopData, setShopData] = useState({})
 
+    console.log(shopData, "sfdhfhs")
+
     const { id } = useParams()
+
+    console.log(id, "id")
 
     const navigate = useNavigate();
 
@@ -50,7 +54,8 @@ const CategoryPage = () => {
             }
             const getShop = async () => {
                 const data = await axios.get(`${ENV.VITE_API_URL}/shops/${id}`)
-                setShopData(data?.data?.shop[0])
+                console.log(data,"shop Data")
+                setShopData(data?.data?.shop)
             }
             getProducts()
             getShop()
