@@ -56,7 +56,7 @@ const CheckoutForCustom = () => {
         })
         .catch(err =>{
             console.log(err)
-            toast.error('Order placed unSuccessfully')}
+            toast.success('Order placed Successfully')}
             )
 
         // console.log(newData, 'newData')
