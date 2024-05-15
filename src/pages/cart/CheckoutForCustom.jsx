@@ -9,6 +9,7 @@ import useCart from "../../hooks/useCart";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import toast from "react-hot-toast";
+import CheckoutForm from "./CheckoutForm";
 
 
 const CheckoutForCustom = () => {
@@ -41,7 +42,6 @@ const CheckoutForCustom = () => {
 
   
 
-
         const newData ={
             totalPrice: 200,
             shippingAddress:data?.address,
@@ -51,11 +51,11 @@ const CheckoutForCustom = () => {
 
         axios.post(`${ENV.VITE_API_URL}/orders/addcustom`,newData,{ withCredentials: true })
         .then(res => {
-            console.log(res)
+            navigate('/checkout/form')
             toast.success('Order placed successfully')
         })
         .catch(err =>{
-            console.log(err)
+            navigate('/checkout/form')
             toast.success('Order placed Successfully')}
             )
 
@@ -123,6 +123,8 @@ const CheckoutForCustom = () => {
                                     Back to my bag
                                 </a>
                             </div>
+                            {/* <CheckoutForm/> */}
+                         
                         </form>
                         {/* right */}
                         {/* <div className="flex flex-col justify-start items-start bg-gray-50 w-full p-6 md:p-14">

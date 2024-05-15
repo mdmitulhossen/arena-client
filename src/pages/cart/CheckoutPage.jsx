@@ -9,6 +9,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { loadStripe } from "@stripe/stripe-js";
 import { CardElement, Elements } from "@stripe/react-stripe-js";
+import CheckoutForm from "./CheckoutForm";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLICK_KEY);
 
@@ -52,14 +53,14 @@ const CheckoutPage = () => {
 
         axios.post(`${ENV.VITE_API_URL}/orders/placeOrder`, newData, { withCredentials: true })
             .then(res => {
-                navigate('/')
-                toast.success('Order placed successfully')
-                
+                navigate('/checkout/form')
+                // toast.success('Order placed successfully')
+
             })
             .catch(err => {
                 console.log(err)
-                navigate('/')
-                toast.success('Order placed Successfully')
+                navigate('/checkout/form')
+                // toast.success('Order placed Successfully')
             }
 
             )
@@ -130,11 +131,12 @@ const CheckoutPage = () => {
                             </div>
 
                             <div>
-                                <Elements
+                                {/* <Elements
                                     stripe={stripePromise}
                                 >
-                                    {/* <CheckoutForm /> */}
-                                </Elements>
+                                    <CheckoutForm />
+                                </Elements> */}
+                                {/* <CheckoutForm /> */}
                             </div>
                         </form>
                         {/* right */}
